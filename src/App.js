@@ -17,7 +17,11 @@ function App() {
             path="/"
             exact
             render={() =>
-              currentUser ? <Redirect to="/app" /> : <Redirect to="/login" />
+              currentUser ? (
+                <Redirect to="/app/dashboard" />
+              ) : (
+                <Redirect to="/login" />
+              )
             }
           />
           <Route path="/app" render={() => <Index />} />

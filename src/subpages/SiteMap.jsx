@@ -9,6 +9,7 @@ const SiteMap = () => {
         title="Fluxos"
         actionEnabled={true}
         actionBtnLabel="Criar novo fluxo"
+        extraClasses="search--fluxo"
       />
       <SiteMapComponent />
     </div>

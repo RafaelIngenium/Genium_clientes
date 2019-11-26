@@ -1,7 +1,12 @@
 import React from "react";
 import SearchBar from "./SearchBar";
 
-const SubPageHeader = ({ title, actionEnabled, actionBtnLabel }) => {
+const SubPageHeader = ({
+  title,
+  actionEnabled,
+  actionBtnLabel,
+  extraClasses
+}) => {
   return (
     <div className="main__header flex__row">
       <div className="flex__cell flex__cell--9">
@@ -10,13 +15,13 @@ const SubPageHeader = ({ title, actionEnabled, actionBtnLabel }) => {
         </div>
       </div>
       {actionEnabled && (
-        <div class="flex__cell flex__cell--3">
-          <div class="main__header__btn">
-            <div class="main__header__btn__item">
-              <SearchBar />
+        <div className="flex__cell flex__cell--3">
+          <div className="main__header__btn">
+            <div className="main__header__btn__item">
+              <SearchBar extraClasses={extraClasses} />
             </div>
-            <div class="main__header__btn__item">
-              <button class="btn btn--primary">{actionBtnLabel}</button>
+            <div className="main__header__btn__item">
+              <button className="btn btn--primary">{actionBtnLabel}</button>
             </div>
           </div>
         </div>
