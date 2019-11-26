@@ -9,26 +9,26 @@ import { PopOver } from "../../utils/Typpy";
 
 const renderPopOver = () => {
   return (
-    <div class="context-menu" id="drop-change-chart">
-      <div class="context-menu__list">
-        <div class="card-resume__option__items">
-          <div class="card-resume__option__items__item">
+    <div className="context-menu" id="drop-change-chart">
+      <div className="context-menu__list">
+        <div className="card-resume__option__items">
+          <div className="card-resume__option__items__item">
             <ChartBar />
             Colunas
           </div>
-          <div class="card-resume__option__items__item">
+          <div className="card-resume__option__items__item">
             <ChartBarAlt />
             Barras
           </div>
-          <div class="card-resume__option__items__item">
+          <div className="card-resume__option__items__item">
             <ChartLine />
             Linhas
           </div>
-          <div class="card-resume__option__items__item">
+          <div className="card-resume__option__items__item">
             <Dashboard />
             Semi Círculo
           </div>
-          <div class="card-resume__option__items__item">
+          <div className="card-resume__option__items__item">
             <ChartPie />
             Pizza
           </div>
