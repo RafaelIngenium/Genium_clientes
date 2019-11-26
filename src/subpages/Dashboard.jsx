@@ -1,11 +1,11 @@
 import React from "react";
 import DashboardComponent from "../components/Dashboard/DashboardComponent";
-import Header from "../components/Dashboard/Header";
+import SubPageHeader from "../components/misc/SubPageHeader";
 
 const Dashboard = () => {
   return (
     <div className="main">
-      <Header />
+      <SubPageHeader title="Dashboard" actionEnabled={false} />
       <DashboardComponent />
     </div>
   );
