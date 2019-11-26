@@ -1,6 +1,6 @@
 import React from "react";
 
-const TopFiveContentItem = ({ type }) => {
+const TopFiveItem = ({ type }) => {
   return (
     <div className="top-five__content__item">
       <div className="user-info">
@@ -11,7 +11,7 @@ const TopFiveContentItem = ({ type }) => {
             alt=""
           />
         </div>
-
+        {/* PARA USUARIOS ATIVOS */}
         {type === "user" && (
           <div className="user-info__text">
             <div className="user-info__text__title">
@@ -30,6 +30,7 @@ const TopFiveContentItem = ({ type }) => {
             </div>
           </div>
         )}
+        {/* PATA FLUXOS */}
         {type === "flow" && (
           <div className="user-info__text">
             <div className="user-info__text__title">SAC</div>
@@ -40,4 +41,4 @@ const TopFiveContentItem = ({ type }) => {
   );
 };
 
-export default TopFiveContentItem;
+export default TopFiveItem;

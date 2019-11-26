@@ -1,12 +1,12 @@
 import React from "react";
-import Index from "../components/Dashboard/Index";
+import DashboardComponent from "../components/Dashboard/DashboardComponent";
 import Header from "../components/Dashboard/Header";
 
 const Dashboard = () => {
   return (
     <div className="main">
       <Header />
-      <Index />
+      <DashboardComponent />
     </div>
   );
 };
