@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "Inter Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Inter Regular"),
+    url("./assets/fonts/Inter-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Inter Thin";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Inter"), url("./assets/fonts/Inter-Thin-BETA.woff") format("woff");
+}
+@font-face {
+  font-family: "Inter Light";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Inter Light"),
+    url("./assets/fonts/Inter-Light-BETA.woff") format("woff");
+}
+@font-face {
+  font-family: "Inter Semibold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Inter Semibold"),
+    url("./assets/fonts/Inter-SemiBold.woff") format("woff");
+}
+@font-face {
+  font-family: "Inter Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Inter Bold"), url("./assets/fonts/Inter-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: "Inter ExtraBold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Inter ExtraBold"),
+    url("./assets/fonts/Inter-ExtraBold.woff") format("woff");
+}
+@font-face {
+  font-family: "Inter Black";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Inter Black"),
+    url("./assets/fonts/Inter-Black.woff") format("woff");
+}
+
+.mini-chat__message-container__buddle--left
+  .mini-chat__message-container__buddle__text:last-child {
+  border-radius: 20px 20px 20px 0px;
+}
+
+.mini-chat__message-container__buddle--right
+  .mini-chat__message-container__buddle__text:last-child {
+  border-radius: 20px 20px 0px 20px;
+}
