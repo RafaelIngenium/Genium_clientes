@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, withRouter, Switch } from "react-router-dom";
+import { Route, withRouter, Switch, Redirect } from "react-router-dom";
 import SideMenu from "../components/SideMenu/SideMenu";
 import Header from "../components/Header/Header";
 import Dashboard from "../subpages/Dashboard";
@@ -32,7 +32,10 @@ const Index = props => {
                   component={SiteMap}
                 />
                 <Route path={`${props.match.path}/robot`} component={Robot} />
-                <Route path="*" render={() => <h1>Not found</h1>} />
+                <Route
+                  path="*"
+                  render={() => <h1>404 - Página nao encontrada</h1>}
+                />
               </Switch>
             </div>
           </div>
