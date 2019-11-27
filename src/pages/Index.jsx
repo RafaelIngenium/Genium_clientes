@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, withRouter, Switch, Redirect } from "react-router-dom";
+import { Route, withRouter, Switch } from "react-router-dom";
 import SideMenu from "../components/SideMenu/SideMenu";
 import Header from "../components/Header/Header";
 import Dashboard from "../subpages/Dashboard";
