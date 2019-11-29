@@ -1,8 +1,12 @@
 import React from "react";
+import MicroModal from "micromodal";
 import SearchBar from "./SearchBar";
+
+MicroModal.init();
 
 const SubPageHeader = ({
   title,
+  onActionBtn,
   actionEnabled,
   actionBtnLabel,
   extraClasses
@@ -21,7 +25,15 @@ const SubPageHeader = ({
               <SearchBar extraClasses={extraClasses} />
             </div>
             <div className="main__header__btn__item">
-              <button className="btn btn--primary">{actionBtnLabel}</button>
+              <button
+                className="btn btn--primary"
+                // data-custom-open="modal-component"
+                // data-micromodal-trigger="modal-component"
+                //onClick={() => MicroModal.show("modal-component")}
+                onClick={onActionBtn}
+              >
+                {actionBtnLabel}
+              </button>
             </div>
           </div>
         </div>

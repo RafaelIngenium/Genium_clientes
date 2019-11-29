@@ -6,6 +6,7 @@ import Dashboard from "../subpages/Dashboard";
 import SiteMap from "../subpages/SiteMap";
 import Robot from "../subpages/Robot";
 import ChatPanel from "../components/ChatPanel/ChatPanel";
+import Modal from "../components/modal/Modal";
 
 const Index = props => {
   return (
@@ -37,6 +38,9 @@ const Index = props => {
                   render={() => <h1>404 - Página nao encontrada</h1>}
                 />
               </Switch>
+              {/* MODAL COMPONENT */}
+
+              <Modal />
             </div>
           </div>
         </div>
