@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ChannelItem from "../misc/ChannelItem";
+import SelectComponent from "./../misc/SelectComponent";
 
 const ModalFluxo = () => {
   const [channels, setChannels] = useState([
@@ -19,6 +20,33 @@ const ModalFluxo = () => {
     setChannels(newChannels);
   };
 
+  const timeArray = [
+    { value: "0", label: "00:00" },
+    { value: "1", label: "01:00" },
+    { value: "2", label: "02:00" },
+    { value: "3", label: "03:00" },
+    { value: "4", label: "04:00" },
+    { value: "5", label: "05:00" },
+    { value: "6", label: "06:00" },
+    { value: "7", label: "07:00" },
+    { value: "8", label: "08:00" },
+    { value: "9", label: "09:00" },
+    { value: "10", label: "10:00" },
+    { value: "11", label: "11:00" },
+    { value: "12", label: "12:00" },
+    { value: "13", label: "13:00" },
+    { value: "14", label: "14:00" },
+    { value: "15", label: "15:00" },
+    { value: "16", label: "16:00" },
+    { value: "17", label: "17:00" },
+    { value: "18", label: "18:00" },
+    { value: "19", label: "19:00" },
+    { value: "20", label: "20:00" },
+    { value: "21", label: "21:00" },
+    { value: "22", label: "22:00" },
+    { value: "23", label: "23:00" }
+  ];
+
   return (
     <React.Fragment>
       <div className="name-fluxo">
@@ -30,13 +58,16 @@ const ModalFluxo = () => {
 
       <div className="select-fluxo">
         <div className="fluxo-title">Onde você quer salvar?</div>
-
-        <select name="" id="">
-          <option value="">Selecione a pasta</option>
-          <option value="">Fluxo Pasta</option>
-          <option value="">Fluxo Pasta</option>
-          <option value="">Fluxo Pasta</option>
-        </select>
+        <SelectComponent
+          defaultOption="Selecione uma pasta"
+          selectOptList={[
+            { value: "test1", label: "Test1" },
+            { value: "test2", label: "Test2" }
+          ]}
+          handleSelectedOpt={event => {
+            console.log(event);
+          }}
+        />
       </div>
       <div className="comunication-fluxo">
         <div className="fluxo-title">Por onde você vai se comunicar?</div>
@@ -62,7 +93,7 @@ const ModalFluxo = () => {
             id="radio-1"
             name="radio"
             value="radio-1"
-            checked=""
+            // checked=""
           />
           <label className="" htmlFor="radio-1">
             <span>
@@ -106,57 +137,22 @@ const ModalFluxo = () => {
       </div>
 
       <div className="select-fluxo select-fluxo--date">
-        <select className="select-1" name="" id="">
-          <option value="hora" selected>
-            00:00
-          </option>
-          <option value="hora">01:00</option>
-          <option value="hora">02:00</option>
-
-          <option value="hora">03:00</option>
-
-          <option value="hora">04:00</option>
-          <option value="hora">05:00</option>
-
-          <option value="hora">06:00</option>
-
-          <option value="hora">07:00</option>
-
-          <option value="hora">08:00</option>
-
-          <option value="hora">09:00</option>
-
-          <option value="hora">10:00</option>
-
-          <option value="hora">11:00</option>
-          <option value="hora">12:00</option>
-        </select>
-
-        <select className="select-2" name="hora" id="">
-          <option value="hora" selected>
-            00:00
-          </option>
-          <option value="hora">01:00</option>
-          <option value="hora">02:00</option>
-
-          <option value="hora">03:00</option>
-
-          <option value="hora">04:00</option>
-          <option value="hora">05:00</option>
-
-          <option value="hora">06:00</option>
-
-          <option value="hora">07:00</option>
-
-          <option value="hora">08:00</option>
-
-          <option value="hora">09:00</option>
-
-          <option value="hora">10:00</option>
-
-          <option value="hora">11:00</option>
-          <option value="hora">12:00</option>
-        </select>
+        <SelectComponent
+          defaultOption=""
+          extraClases="select-1"
+          selectOptList={timeArray}
+          handleSelectedOpt={event => {
+            console.log(event);
+          }}
+        />
+        <SelectComponent
+          defaultOption=""
+          extraClases="select-2"
+          selectOptList={timeArray}
+          handleSelectedOpt={event => {
+            console.log(event);
+          }}
+        />
 
         <div className="select-3" name="" id="">
           <div className="date-modal">27/05 - 29/06 [icon-date]</div>

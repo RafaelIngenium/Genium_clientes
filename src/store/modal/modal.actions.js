@@ -1,5 +1,10 @@
 import ModalActionTypes from "./modal.types.js";
 
+/*
+  prefixar "async" nas funções assincronas
+  Ex: asyncGetData()...
+*/
+
 export const showModalAdd = modalOpt => ({
   type: ModalActionTypes.SHOW_MODAL_ADD_FOLDER
   // payload: modalOpt
