@@ -14,7 +14,7 @@ const SiteMap = props => {
   };
 
   return (
-    <div>
+    <React.Fragment>
       <SubPageHeader
         title="Fluxos"
         actionEnabled={true}
@@ -23,12 +23,12 @@ const SiteMap = props => {
         onActionBtn={handleActionBtn}
       />
       <SiteMapComponent />
-    </div>
+    </React.Fragment>
   );
 };
 
-const mapStateToProps = state => ({
-  modal: state.modalReducer
+const mapStateToProps = ({ modalReducer }) => ({
+  modal: modalReducer
 });
 
 const mapDispatchToProps = dispatch => ({

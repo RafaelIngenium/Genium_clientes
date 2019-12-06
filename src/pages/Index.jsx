@@ -17,27 +17,29 @@ const Index = props => {
         <div className="container__content__body">
           <div className="flex container__content__body--absolute">
             <div className="flex__container">
-              <Switch>
-                {/* <Route
+              <div className="main">
+                <Switch>
+                  {/* <Route
                   path={props.match.path}
                   render={() => (
                     <Redirect to={`${props.match.path}/dashboard`} />
                   )}
                 /> */}
-                <Route
-                  path={`${props.match.path}/dashboard`}
-                  component={Dashboard}
-                />
-                <Route
-                  path={`${props.match.path}/sitemap`}
-                  component={SiteMap}
-                />
-                <Route path={`${props.match.path}/robot`} component={Robot} />
-                <Route
-                  path="*"
-                  render={() => <h1>404 - Página nao encontrada</h1>}
-                />
-              </Switch>
+                  <Route
+                    path={`${props.match.path}/dashboard`}
+                    component={Dashboard}
+                  />
+                  <Route
+                    path={`${props.match.path}/sitemap`}
+                    component={SiteMap}
+                  />
+                  <Route path={`${props.match.path}/robot`} component={Robot} />
+                  <Route
+                    path="*"
+                    render={() => <h1>404 - Página nao encontrada</h1>}
+                  />
+                </Switch>
+              </div>
               {/* MODAL COMPONENT */}
 
               <Modal />

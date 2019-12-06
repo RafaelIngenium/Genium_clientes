@@ -23,23 +23,24 @@ const ModalFluxo = () => {
 
   const handleChannelClick = channelName => {
     let newChannels = [...channels];
-    newChannels.map(channel => {
+    for (let channel of newChannels) {
       if (channel.label === channelName) {
         channel.isChecked = !channel.isChecked;
       }
-    });
+    }
+
     setChannels(newChannels);
   };
 
   const handleDayClick = d => {
     const newActiveDays = [...activeDays];
-    newActiveDays.map(day => {
-      // console.log(day);
-      if (day.index === d.index) day.active = !day.active;
-    });
+    for (let day of newActiveDays) {
+      if (day.index === d.index) {
+        day.active = !day.active;
+      }
+    }
 
     setActiveDays(newActiveDays);
-    console.log(activeDays);
   };
 
   return (

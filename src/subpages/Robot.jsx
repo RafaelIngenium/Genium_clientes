@@ -4,14 +4,14 @@ import SubPageHeader from "../components/misc/SubPageHeader";
 
 const Robot = () => {
   return (
-    <div>
+    <React.Fragment>
       <SubPageHeader
         title="Bot"
         actionEnabled={true}
         actionBtnLabel="Salvar e fechar"
       />
       <RobotComponent />
-    </div>
+    </React.Fragment>
   );
 };
 

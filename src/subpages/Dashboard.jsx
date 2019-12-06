@@ -4,10 +4,10 @@ import SubPageHeader from "../components/misc/SubPageHeader";
 
 const Dashboard = () => {
   return (
-    <div className="main">
+    <React.Fragment>
       <SubPageHeader title="Dashboard" actionEnabled={false} />
       <DashboardComponent />
-    </div>
+    </React.Fragment>
   );
 };
 

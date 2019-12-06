@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 
 const SelectComponent = ({
   selectOptList,
   handleSelectedOpt,
   extraClases,
-  defaultOption
+  defaultOption,
+  selectedValue
 }) => {
-  const [selectOpts, setSelectOpts] = useState(selectOptList);
-  const [selected, setSelected] = useState();
+  // const [selectOpt, setSelectOpts] = useState(selectOptList);
+  // const [selected, setSelected] = useState();
 
   const handleSelecChange = event => {
-    const selectedOpt = selectOpts.filter(
+    const selectedOpt = selectOptList.filter(
       opt => opt.value === event.target.value
     );
     handleSelectedOpt(selectedOpt);
@@ -19,7 +20,7 @@ const SelectComponent = ({
   return (
     <select
       className={extraClases ? extraClases : ""}
-      value={selected}
+      value={selectedValue}
       onChange={handleSelecChange}
     >
       {defaultOption !== "" ? (
@@ -27,7 +28,7 @@ const SelectComponent = ({
       ) : (
         ""
       )}
-      {selectOpts.map((opt, i) => (
+      {selectOptList.map((opt, i) => (
         <option key={i} value={opt.value}>
           {opt.label}
         </option>

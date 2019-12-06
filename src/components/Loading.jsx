@@ -14,9 +14,7 @@ const Loading = () => {
         backgroundColor: "grey"
       }}
     >
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit natus
-      iure illo corrupti repellendus, sequi, error unde dolore iste consectetur
-      culpa eius, odio debitis aut magnam blanditiis molestiae? Quis, delectus.
+      <h1>Carregando...</h1>
     </div>
   );
 };
