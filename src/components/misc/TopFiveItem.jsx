@@ -1,4 +1,8 @@
 import React from "react";
+import { ReactComponent as WebChat } from "../../assets/images/webchat-icon.svg";
+import { ReactComponent as Whatsapp } from "../../assets/images/whatsapp-icon.svg";
+import { ReactComponent as Messenger } from "../../assets/images/messenger-icon.svg";
+import { ReactComponent as Voice } from "../../assets/images/voz-icon.svg";
 
 const TopFiveItem = ({ type }) => {
   return (
@@ -21,8 +25,8 @@ const TopFiveItem = ({ type }) => {
                 VargasVargasVargasVargas
               </div>
 
-              <span>
-                {/* <?php include './../build/images/webchat-icon.svg'; ?> */}
+              <span className="user-info__channel-icon">
+                <WebChat />
               </span>
             </div>
             <div className="user-info__text__subtitle">

@@ -55,3 +55,33 @@
   .mini-chat__message-container__buddle__text:last-child {
   border-radius: 20px 20px 0px 20px;
 }
+
+.modal__btn-confirm {
+  margin-right: 0 !important;
+}
+
+.tippy-content {
+  background-color: white !important;
+  -webkit-box-shadow: 0px 0px 8px #51525a29;
+  box-shadow: 0px 0px 8px #51525a29;
+}
+
+.options-change-action__item {
+  color: #26323d;
+}
+
+.tippy-tooltip[data-placement^="right"] > .tippy-arrow {
+  border-right-color: white !important;
+}
+
+.tippy-tooltip[data-placement^="bottom"] > .tippy-arrow {
+  border-bottom-color: white !important;
+}
+
+.tippy-tooltip[data-placement^="left"] > .tippy-arrow {
+  border-left-color: white !important;
+}
+
+.tippy-tooltip[data-placement^="top"] > .tippy-arrow {
+  border-top-color: white !important;
+}
