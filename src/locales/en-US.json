@@ -1,0 +1,54 @@
+{
+  "user": {
+    "title": "User"
+  },
+  "password": {
+    "title": "Password"
+  },
+  "welcome": {
+    "title": "Enter your email and password"
+  },
+  "accept": {
+    "title": "I accept the"
+  },
+  "terms": {
+    "title": "Terms of Service"
+  },
+  "login": {
+    "title": "Log in"
+  },
+  "remember_pass": {
+    "title": "Forgot password"
+  },
+  "header": {
+    "welcome": "Hello"
+  },
+  "tasks_performed": {
+    "title": "PERFORMED TASKS"
+  },
+  "completed_calls": {
+    "title": "Completed Calls"
+  },
+  "resolved_calls": {
+    "title": "Resolved Calls"
+  },
+  "attendances_progress": {
+    "title": "Attendances in progress"
+  },
+  "see_all": {
+    "title": "See all"
+  },
+  "add_parameter": {
+    "title": "Add parameter"
+  },
+  "search": {
+    "title": "Search"
+  },
+  "active_users": {
+    "title": "ACTIVE USERS"
+  },
+  "flows": {
+    "title": "FLOWS"
+  }
+}
+
