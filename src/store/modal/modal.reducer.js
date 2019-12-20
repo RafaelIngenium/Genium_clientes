@@ -70,6 +70,7 @@ const modalReducer = (state = INITIAL_STATE, action) => {
         }
       };
     case ModalActionTypes.SHOW_MODAL_FLUXO:
+    case ModalActionTypes.SHOW_MODAL_CONF_FLUXO:
       return {
         ...state,
         modalTitle: "Configurar Fluxo",
@@ -81,18 +82,7 @@ const modalReducer = (state = INITIAL_STATE, action) => {
           modalContent: "modal-1-content"
         }
       };
-    case ModalActionTypes.SHOW_MODAL_CONF_FLUXO:
-      return {
-        ...state,
-        modalTitle: "Configurar Fluxo",
-        modalConfirmActionLabel: "Salvar",
-        meta: {
-          modalContentComponent: ModalConfFluxo,
-          modalClass: "modal-conf-fluxo",
-          modalTitle: "modal-1-title",
-          modalContent: "modal-1-content"
-        }
-      };
+
     default:
       return state;
   }

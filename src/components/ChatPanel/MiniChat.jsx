@@ -47,6 +47,11 @@ const MiniChat = props => {
           </div>
           {/* <!-- Right --> */}
           <div className="mini-chat__message-container__buddle mini-chat__message-container__buddle--right">
+            <img
+              className="mini-chat__message-container__img-bot"
+              src="https://media.sproutsocial.com/uploads/2016/08/Facebook-Messenger-Bot-01.png"
+              alt="perfil"
+            />
             <div className="mini-chat__message-container__buddle__call-bubble">
               <div className="mini-chat__message-container__buddle__text">
                 adipisicing elit. Facere vitaeus tempora nemo adipisci!
@@ -55,12 +60,6 @@ const MiniChat = props => {
                 adipisicing elit. Facere vitaeus tempora nemo adipisci!
               </div>
             </div>
-
-            <img
-              className="mini-chat__message-container__img-bot"
-              src="https://media.sproutsocial.com/uploads/2016/08/Facebook-Messenger-Bot-01.png"
-              alt="perfil"
-            />
           </div>
 
           <MiniChatTImer />

@@ -68,10 +68,7 @@ const Modal = (props, { toggleModal }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    modal: state.modalReducer
-  };
-};
-
+const mapStateToProps = state => ({
+  modal: state.modalReducer
+});
 export default connect(mapStateToProps)(Modal);

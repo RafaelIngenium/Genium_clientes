@@ -1,7 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import { ReactComponent as IconBell } from "../../assets/images/icon-bell.svg";
 
-const Header = () => {
+const Header = props => {
   return (
     <div className="container__content__header">
       <header className="header">
@@ -31,8 +32,8 @@ const Header = () => {
 
             <div className="header__user__btn">
               <div className="header__user__btn__name">
-                Olá,
-                <span>Marcos</span>
+                Olá,&nbsp;
+                <span>{props.user.displayname}</span>
               </div>
               <div className="header__user__btn__icon">
                 <i className="material-icons">keyboard_arrow_down</i>
@@ -45,4 +46,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = ({ userReducer }) => ({
+  user: userReducer.user
+});
+
+export default connect(mapStateToProps)(Header);

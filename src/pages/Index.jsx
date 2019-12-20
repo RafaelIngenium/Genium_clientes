@@ -19,12 +19,7 @@ const Index = props => {
             <div className="flex__container">
               <div className="main">
                 <Switch>
-                  {/* <Route
-                  path={props.match.path}
-                  render={() => (
-                    <Redirect to={`${props.match.path}/dashboard`} />
-                  )}
-                /> */}
+                  {/* <Route exact path={"/"} component={Dashboard} /> */}
                   <Route
                     path={`${props.match.path}/dashboard`}
                     component={Dashboard}
