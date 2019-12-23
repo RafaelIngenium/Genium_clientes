@@ -15,7 +15,7 @@ import { ReactComponent as DoubleIcon } from "../../assets/images/double-alt.svg
 
 MicroModal.init();
 
-const FoldresContentItem = props => {
+const FoldersContentItem = props => {
   const handleActionItemClick = action => {
     switch (action) {
       case "delete":
@@ -112,4 +112,4 @@ const mapDipatchToProps = dispatch => ({
   showModalMove: () => dispatch(showModalMove())
 });
 
-export default connect(null, mapDipatchToProps)(FoldresContentItem);
+export default connect(null, mapDipatchToProps)(FoldersContentItem);

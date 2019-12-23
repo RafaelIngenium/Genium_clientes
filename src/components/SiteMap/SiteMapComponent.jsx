@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { showModalAdd } from "./../../store/modal/modal.actions";
 import MicroModal from "micromodal";
-import FoldresContentItem from "../misc/FoldresContentItem";
+import FoldersContentItem from "../misc/FoldersContentItem";
 import FlowListItem from "../misc/FlowListItem";
 
 MicroModal.init();
@@ -44,7 +44,7 @@ const SiteMapComponent = props => {
           <div className="card card--fluxo">
             <div className="foldres">
               <div className="foldres__content">
-                <FoldresContentItem />
+                <FoldersContentItem />
               </div>
             </div>
           </div>
