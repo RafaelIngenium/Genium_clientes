@@ -18,64 +18,32 @@ const MiniChat = props => {
         <div className="mini-chat__message-container">
           <MiniChatTImer />
           {/* <!-- Left --> */}
-          <MiniChatMessageContainer />
-
+          <MiniChatMessageContainer
+            msgPos="left"
+            avatarSrc="https://ichef.bbci.co.uk/news/660/cpsprodpb/154EC/production/_102967278_1f1ecc7c-a677-4e9f-838a-317186227aad.jpg"
+          />
           {/* <!-- Right --> */}
-
+          <MiniChatMessageContainer
+            msgPos="right"
+            avatarSrc="https://media.sproutsocial.com/uploads/2016/08/Facebook-Messenger-Bot-01.png"
+          />
           {/* <!-- left --> */}
-          <div className="mini-chat__message-container__buddle mini-chat__message-container__buddle--left">
-            <img
-              className="mini-chat__message-container__buddle__img"
-              src="https://ichef.bbci.co.uk/news/660/cpsprodpb/154EC/production/_102967278_1f1ecc7c-a677-4e9f-838a-317186227aad.jpg"
-              alt="perfil"
-            />
-            <div className="mini-chat__message-container__buddle__call-bubble">
-              <div className="mini-chat__message-container__buddle__text ">
-                adipisicing elit. Facere vitaeus tempora nemo adipisci!
-              </div>
-              <div className="mini-chat__message-container__buddle__text ">
-                adipisicing elit. Facere vitaeus tempora nemo adipisci!
-              </div>
-              <div className="mini-chat__message-container__buddle__text ">
-                adipisicing elit. Facere vitaeus tempora nemo adipisci!
-              </div>
-
-              <div className="mini-chat__message-container__buddle__text">
-                adipisicing elit. Facere vitaeus tempora nemo adipisci!
-              </div>
-            </div>
-          </div>
+          <MiniChatMessageContainer
+            msgPos="left"
+            avatarSrc="https://ichef.bbci.co.uk/news/660/cpsprodpb/154EC/production/_102967278_1f1ecc7c-a677-4e9f-838a-317186227aad.jpg"
+          />
           {/* <!-- Right --> */}
-          <div className="mini-chat__message-container__buddle mini-chat__message-container__buddle--right">
-            <img
-              className="mini-chat__message-container__img-bot"
-              src="https://media.sproutsocial.com/uploads/2016/08/Facebook-Messenger-Bot-01.png"
-              alt="perfil"
-            />
-            <div className="mini-chat__message-container__buddle__call-bubble">
-              <div className="mini-chat__message-container__buddle__text">
-                adipisicing elit. Facere vitaeus tempora nemo adipisci!
-              </div>
-              <div className="mini-chat__message-container__buddle__text">
-                adipisicing elit. Facere vitaeus tempora nemo adipisci!
-              </div>
-            </div>
-          </div>
-
+          <MiniChatMessageContainer
+            msgPos="right"
+            avatarSrc="https://media.sproutsocial.com/uploads/2016/08/Facebook-Messenger-Bot-01.png"
+          />
           <MiniChatTImer />
-
-          <div className="mini-chat__message-container__buddle mini-chat__message-container__buddle--left">
-            <img
-              className="mini-chat__message-container__buddle__img"
-              src="https://ichef.bbci.co.uk/news/660/cpsprodpb/154EC/production/_102967278_1f1ecc7c-a677-4e9f-838a-317186227aad.jpg"
-              alt="perfil"
-            />
-            <div className="mini-chat__message-container__buddle__call-bubble">
-              <div className="mini-chat__message-container__buddle__text ">
-                adipisicing elit. Facere vitaeus tempora nemo adipisci!
-              </div>
-            </div>
-          </div>
+          {/* <!-- left --> */}
+          <MiniChatMessageContainer
+            msgPos="left"
+            avatarSrc="https://ichef.bbci.co.uk/news/660/cpsprodpb/154EC/production/_102967278_1f1ecc7c-a677-4e9f-838a-317186227aad.jpg"
+          />{" "}
+          {/* <!-- left --> */}
         </div>
 
         {/* <!-- Digitando --> */}
