@@ -1,17 +1,18 @@
 import React from "react";
 import Tippy from "@tippy.js/react";
-import "tippy.js/dist/tippy.css";
+
+const { roundArrow } = Tippy;
 
 export const PopOver = ({ children, ...otherProps }) => (
   <Tippy {...otherProps}>{children}</Tippy>
 );
 
 PopOver.defaultProps = {
-  arrow: true,
+  arrow: roundArrow,
   allowHTML: true,
   duration: 250,
   theme: "ingweb",
   trigger: "click",
-  interactive: true
-  // placement: "right"
+  interactive: true,
+  placement: "right"
 };
