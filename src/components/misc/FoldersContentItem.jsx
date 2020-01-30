@@ -20,19 +20,17 @@ const FoldersContentItem = props => {
     switch (action) {
       case "delete":
         props.showModalDelete();
-        MicroModal.show("modal-component");
         break;
       case "move":
         props.showModalMove();
-        MicroModal.show("modal-component");
         break;
       case "edit":
         props.showModalEdit();
-        MicroModal.show("modal-component");
         break;
       default:
         break;
     }
+    MicroModal.show("modal-component");
   };
 
   const renderPopOver = () => {

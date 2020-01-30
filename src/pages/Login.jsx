@@ -11,7 +11,6 @@ const Login = props => {
   const handleLogin = event => {
     event.preventDefault();
     props.userLoginAsync(username, password);
-    // console.log("User:" + username, "Password:" + md5(password));
   };
 
   return (
@@ -28,7 +27,7 @@ const Login = props => {
           <div className="login__content__title">
             Entre com seu e-mail e senha
           </div>
-          {props.error.msg && (
+          {props.error && (
             <p
               style={{
                 color: "red",

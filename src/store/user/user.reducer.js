@@ -3,7 +3,7 @@ import UserActionTypes from "./user.types";
 const INITIAL_STATE = {
   user: null,
   loading: false,
-  error: {}
+  error: null
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -19,14 +19,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         user: { ...action.payload },
         loading: false,
-        error: {}
+        error: null
       };
     case UserActionTypes.USER_LOGIN_FAILURE:
       return {
         ...state,
         user: null,
         loading: false,
-        error: { msg: "Usuario não encontrado. Verifique login e senha" }
+        error: action.payload
       };
     case UserActionTypes.GET_USER_INFO:
       return {

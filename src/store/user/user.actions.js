@@ -15,8 +15,9 @@ export const userLoginSuccess = id => ({
   payload: id
 });
 
-export const userLoginFailure = () => ({
-  type: UserActionTypes.USER_LOGIN_FAILURE
+export const userLoginFailure = error => ({
+  type: UserActionTypes.USER_LOGIN_FAILURE,
+  payload: error
 });
 
 export const userLoginAsync = (username, password) => {
@@ -35,11 +36,11 @@ export const userLoginAsync = (username, password) => {
       }
     } catch (error) {
       console.error(error);
+      dispatch(userLoginFailure(error));
     }
   };
 };
 
-export const userLogout = user => ({
-  type: UserActionTypes.USER_LOGOUT,
-  payload: user
+export const userLogout = () => ({
+  type: UserActionTypes.USER_LOGOUT
 });
