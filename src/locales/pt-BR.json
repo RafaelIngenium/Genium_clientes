@@ -1,0 +1,53 @@
+{
+  "user": {
+    "title": "Usuário"
+  },
+  "password": {
+    "title": "Senha"
+  },
+  "welcome": {
+    "title": "Entre com seu e-mail e senha"
+  },
+  "accept": {
+    "title": "Aceito os"
+  },
+  "terms": {
+    "title": "Termo de Serviços"
+  },
+  "login": {
+    "title": "Entrar"
+  },
+  "remember_pass": {
+    "title": "Esqueceu a senha"
+  },
+  "header": {
+    "welcome": "Olá"
+  },
+  "tasks_performed": {
+    "title": "TAREFAS PERFORMADAS"
+  },
+  "completed_calls": {
+    "title": "Atendimentos concluidos"
+  },
+  "resolved_calls": {
+    "title": "Atendimentos Resolvidos"
+  },
+  "attendances_progress": {
+    "title": "Atendimentos em curso"
+  },
+  "see_all": {
+    "title": "Ver Todos"
+  },
+  "add_parameter": {
+    "title": "Adicionar parâmetro"
+  },
+  "search": {
+    "title": "Busca"
+  },
+  "active_users": {
+    "title": "USUÁRIOS ATIVOS"
+  },
+  "flows": {
+    "title": "FLUXOS"
+  }
+}

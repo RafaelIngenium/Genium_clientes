@@ -1,0 +1,53 @@
+{
+  "user": {
+    "title": "Usuario"
+  },
+  "password": {
+    "title": "Contraseña"
+  },
+  "welcome": {
+    "title": "Ingrese su correo electrónico y contraseña"
+  },
+  "accept": {
+    "title": "Acepto los"
+  },
+  "terms": {
+    "title": "Terminos de Servicio"
+  },
+  "login": {
+    "title": "Entrar"
+  },
+  "remember_pass": {
+    "title": "Olvido la contraseña"
+  },
+  "header": {
+    "welcome": "Hola"
+  },
+  "tasks_performed": {
+    "title": "TAREAS REALIZADAS"
+  },
+  "completed_calls": {
+    "title": "Llamadas completadas"
+  },
+  "resolved_calls": {
+    "title": "Llamadas Resueltas"
+  },
+  "attendances_progress": {
+    "title": "Asistencia en curso"
+  },
+  "see_all": {
+    "title": "Ver todo"
+  },
+  "add_parameter": {
+    "title": "Agregar parámetro"
+  },
+  "search": {
+    "title": "Buscar"
+  },
+  "active_users": {
+    "title": "USUARIOS ACTIVOS"
+  },
+  "flows": {
+    "title": "FLUJOS"
+  }
+}
