@@ -9,7 +9,8 @@ const SubPageHeader = ({
   onActionBtn,
   actionEnabled,
   actionBtnLabel,
-  extraClasses
+  extraClasses,
+  withButton
 }) => {
   return (
     <div className="main__header flex__row">
@@ -24,17 +25,19 @@ const SubPageHeader = ({
             <div className="main__header__btn__item">
               <SearchBar extraClasses={extraClasses} />
             </div>
-            <div className="main__header__btn__item">
-              <button
-                className="btn btn--primary"
-                // data-custom-open="modal-component"
-                // data-micromodal-trigger="modal-component"
-                //onClick={() => MicroModal.show("modal-component")}
-                onClick={onActionBtn}
-              >
-                {actionBtnLabel}
-              </button>
-            </div>
+            {withButton && (
+              <div className="main__header__btn__item">
+                <button
+                  className="btn btn--primary"
+                  // data-custom-open="modal-component"
+                  // data-micromodal-trigger="modal-component"
+                  //onClick={() => MicroModal.show("modal-component")}
+                  onClick={onActionBtn}
+                >
+                  {actionBtnLabel}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}

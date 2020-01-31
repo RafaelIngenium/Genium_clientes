@@ -100,6 +100,12 @@
   max-height: 100px !important;
   height: 100px !important;
 } */
+a:visited,
+a:link {
+  text-decoration: none;
+  color:inherit;
+}
+
 .header__user .list-drop {
   width: auto;
   top: 0;

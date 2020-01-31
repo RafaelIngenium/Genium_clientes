@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, withRouter, Switch } from "react-router-dom";
 import SideMenu from "../components/SideMenu/SideMenu";
 import Header from "../components/Header/Header";
 import Dashboard from "../subpages/Dashboard";
 import SiteMap from "../subpages/SiteMap";
 import Robot from "../subpages/Robot";
+import DashboardDetails from "./../subpages/DashboardDetails";
 import ChatPanel from "../components/ChatPanel/ChatPanel";
 import Modal from "../components/modal/Modal";
 
@@ -21,8 +22,13 @@ const Index = props => {
                 <Switch>
                   {/* <Route exact path={"/"} component={Dashboard} /> */}
                   <Route
+                    exact
                     path={`${props.match.path}/dashboard`}
                     component={Dashboard}
+                  />
+                  <Route
+                    path={`${props.match.path}/dashboard/details`}
+                    component={DashboardDetails}
                   />
                   <Route
                     path={`${props.match.path}/sitemap`}
