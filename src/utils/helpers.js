@@ -24,3 +24,39 @@ export const timeArray = [
   { value: "22", label: "22:00" },
   { value: "23", label: "23:00" }
 ];
+
+// function start() {
+//   let post = Moment().format("DD/MM/YYYY HH:mm:ss");
+
+//   var valorDiferenca = parseInt(Math.abs(Math.round(ipcurrent.difftime)));
+
+//   if (parseInt(ipcurrent.difftime) < 0) {
+//     post = Moment()
+//       .subtract(valorDiferenca, "seconds")
+//       .format("DD/MM/YYYY HH:mm:ss");
+//   } else {
+//     post = Moment()
+//       .add(valorDiferenca, "seconds")
+//       .format("DD/MM/YYYY HH:mm:ss");
+//   }
+
+//   socket.onopen = event => {
+//     dispatch(ConnectionsAPI(true, true, true, ""));
+//     // console.log("CONEXÃO COM O IMSDN RESTABELECIDA");
+//     socket.send(
+//       "REGISTER\r\n" +
+//         userid +
+//         "\r\nTYPE\r\n" +
+//         perfilUser +
+//         "\r\nCPARK\r\n" +
+//         acessoFila +
+//         "\r\nGRP\r\n" +
+//         stringGrupoFila +
+//         "&\r\nSUBSRV\r\n" +
+//         stringSubMonitoria +
+//         "&\r\nMOD\r\n0\r\nRECONN\r\n0\r\n\r\n"
+//     );
+//     // console.log("onopen\r\nREQ\r\n"+informationusers.id+"\r\nUSERNAME\r\n"+informationusers.username+"\r\nDISPLAYNAME\r\n"+informationusers.displayname+"\r\nEXTEN\r\n"+informationusers.ramal+"\r\nREASON\r\n \r\nSTATUS\r\nLV\r\nSTATUSID\r\n-1\r\nHOUR\r\n"+post+"'-00:00:00'\r\nDESCRIPTION\r\n \r\nEMAIL\r\n \r\nGROUP\r\n"+informationusers.idgroup+"\r\nDTL\r\n"+post+"\r\nGROUPNAME\r\n"+informationusers.grupo+"\r\nPSDCOUNT\r\n"+parseInt(informationusers.psdcount)+"\r\nPSDTMA\r\n"+parseInt(informationusers.psdtma)+"\r\nMNGGROUP\r\n-1\r\nINCALLCOUNT\r\n"+parseInt(informationusers.incallcount)+"\r\nINANSCOUNT\r\n"+parseInt(informationusers.inanscount)+"\r\nINTMANS\r\n"+parseInt(informationusers.intmans)+"\r\nINSLA\r\n100\r\nOUTCALLCOUNT\r\n"+parseInt(informationusers.outcallcount)+"\r\nOUTANSCOUNT\r\n"+parseInt(informationusers.outanscount)+"\r\nOUTTMANS\r\n"+parseInt(informationusers.outtmans)+"\r\nOUTSLA\r\n100\r\nTMLOGIN\r\n"+parseInt(informationusers.tmlogin)+"\r\nINITIALLOGIN\r\n1\r\n\r\n")
+//     // socket.send("REQ\r\n"+informationusers.id+"\r\nUSERNAME\r\n"+informationusers.username+"\r\nDISPLAYNAME\r\n"+informationusers.displayname+"\r\nEXTEN\r\n"+informationusers.ramal+"\r\nREASON\r\n \r\nSTATUS\r\nLV\r\nSTATUSID\r\n-1\r\nHOUR\r\n"+post+"'-00:00:00'\r\nDESCRIPTION\r\n \r\nEMAIL\r\n \r\nGROUP\r\n"+informationusers.idgroup+"\r\nDTL\r\n"+post+"\r\nGROUPNAME\r\n"+informationusers.grupo+"\r\nPSDCOUNT\r\n"+parseInt(informationusers.psdcount)+"\r\nPSDTMA\r\n"+parseInt(informationusers.psdtma)+"\r\nMNGGROUP\r\n-1\r\nINCALLCOUNT\r\n"+parseInt(informationusers.incallcount)+"\r\nINANSCOUNT\r\n"+parseInt(informationusers.inanscount)+"\r\nINTMANS\r\n"+parseInt(informationusers.intmans)+"\r\nINSLA\r\n100\r\nOUTCALLCOUNT\r\n"+parseInt(informationusers.outcallcount)+"\r\nOUTANSCOUNT\r\n"+parseInt(informationusers.outanscount)+"\r\nOUTTMANS\r\n"+parseInt(informationusers.outtmans)+"\r\nOUTSLA\r\n100\r\nTMLOGIN\r\n"+parseInt(informationusers.tmlogin)+"\r\nINITIALLOGIN\r\n1\r\n\r\n");
+//   };
+// }

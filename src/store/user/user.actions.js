@@ -1,5 +1,5 @@
 import UserActionTypes from "./user.types";
-import api from "../../utils/api";
+import { api } from "../../utils/api";
 
 export const userLogin = () => ({
   type: UserActionTypes.USER_LOGIN

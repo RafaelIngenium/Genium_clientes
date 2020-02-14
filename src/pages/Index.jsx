@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { Route, withRouter, Switch } from "react-router-dom";
 import SideMenu from "../components/SideMenu/SideMenu";
 import Header from "../components/Header/Header";
@@ -8,8 +9,29 @@ import Robot from "../subpages/Robot";
 import DashboardDetails from "./../subpages/DashboardDetails";
 import ChatPanel from "../components/ChatPanel/ChatPanel";
 import Modal from "../components/modal/Modal";
+import { sendIPSocket } from "../utils/imsdn";
+import { getDisplayName } from "./../utils/connectionPlatformFunction";
 
 const Index = props => {
+  //componentDidMouit
+  useEffect(() => {
+    const { priimsdn, secimsdn, prisipproxy_port, id } = props.userReducer.user;
+
+    //ABRIR CONEXAO
+    const { socket, urls, urlIndex, urlProvider, ipcurrent } = sendIPSocket(
+      priimsdn,
+      secimsdn,
+      prisipproxy_port
+    );
+    test(id);
+  }, []);
+
+  const test = async id => {
+    const response = await getDisplayName(id);
+
+    console.log(response);
+  };
+
   return (
     <div className="container">
       <SideMenu />
@@ -53,4 +75,6 @@ const Index = props => {
   );
 };
 
-export default withRouter(Index);
+const mapStateToProps = ({ userReducer }) => ({ userReducer });
+
+export default connect(mapStateToProps)(withRouter(Index));
