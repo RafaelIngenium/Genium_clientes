@@ -21,6 +21,7 @@ const SiteMap = props => {
         actionBtnLabel="Criar novo fluxo"
         extraClasses="search--fluxo"
         onActionBtn={handleActionBtn}
+        withButton={true}
       />
       <SiteMapComponent />
     </React.Fragment>

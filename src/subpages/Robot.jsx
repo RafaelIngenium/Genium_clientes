@@ -9,6 +9,7 @@ const Robot = () => {
         title="Bot"
         actionEnabled={true}
         actionBtnLabel="Salvar e fechar"
+        withButton={true}
       />
       <RobotComponent />
     </React.Fragment>

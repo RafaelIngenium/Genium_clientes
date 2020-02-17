@@ -100,6 +100,12 @@
   max-height: 100px !important;
   height: 100px !important;
 } */
+a:visited,
+a:link {
+  text-decoration: none;
+  color: inherit;
+}
+
 .header__user .list-drop {
   width: auto;
   top: 0;
@@ -114,4 +120,8 @@
   z-index: 9999;
   overflow: hidden;
   pointer-events: all;
+}
+
+.media__text {
+  text-transform: capitalize;
 }

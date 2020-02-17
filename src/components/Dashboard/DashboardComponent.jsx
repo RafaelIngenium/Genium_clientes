@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import SearchBar from "../misc/SearchBar";
 import CardResume from "../misc/CardResume";
 import TopFiveContainer from "../misc/TopFiveContainer";
 import ChartComponent from "../misc/ChartComponent";
 
 const DashboardComponent = () => {
+  const location = useLocation();
+  //ComponenntDidMount
+  useEffect(() => {}, []);
+
   const [graphType, setGraphType] = useState("line");
   const [graphOptions, setGraphOptions] = useState({
     chart: {
@@ -147,8 +152,13 @@ const DashboardComponent = () => {
 
       <div className="flex-row">
         <div className="dash-resume-content">
-          <CardResume type="add" value="130" infoText="Atendimentos em curso" />
-
+          <Link to={`${location.pathname}/details`}>
+            <CardResume
+              type="add"
+              value="130"
+              infoText="Atendimentos em curso"
+            />
+          </Link>
           <CardResume type="info" value="130" infoText="BOT Info" />
 
           {/* <CardResume type="info" value="130" infoText="BOT Info" />
