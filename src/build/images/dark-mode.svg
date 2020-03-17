@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="255" height="144" viewBox="0 0 255 144">
+    <defs>
+        <rect id="a" width="47.154" height="25.956" rx="3"/>
+        <filter id="b" width="121.2%" height="138.5%" x="-10.6%" y="-15.4%" filterUnits="objectBoundingBox">
+            <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="1.5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.127061797 0 0 0 0 0.130841428 0 0 0 0 0.149739583 0 0 0 1 0"/>
+        </filter>
+        <rect id="c" width="47.154" height="25.956" y="3" rx="3"/>
+        <rect id="e" width="47.154" height="25.956" rx="3"/>
+        <rect id="f" width="47.154" height="25.956" y="3" rx="3"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#3E3F44" d="M2 30h5a2 2 0 0 1 2 2v112H0V32a2 2 0 0 1 2-2z"/>
+        <g transform="translate(36 64.25)">
+            <g fill-rule="nonzero">
+                <use fill="#000" filter="url(#b)" xlink:href="#a"/>
+                <use fill="#45C777" xlink:href="#a"/>
+            </g>
+            <mask id="d" fill="#fff">
+                <use xlink:href="#c"/>
+            </mask>
+            <use fill="#3E3F44" xlink:href="#c"/>
+            <path fill="#828292" d="M46.721 9v.5H0V9zM41.746 19.006h5.191v6.057h-5.19a.865.865 0 0 1-.866-.866v-4.326c0-.477.387-.865.865-.865z" mask="url(#d)"/>
+        </g>
+        <g transform="translate(126.846 45)">
+            <use fill="#BF5AF2" xlink:href="#e"/>
+            <mask id="g" fill="#fff">
+                <use xlink:href="#f"/>
+            </mask>
+            <use fill="#3E3F44" xlink:href="#f"/>
+            <path fill="#828292" d="M1.082 11.22h5.19v6.056h-5.19a.865.865 0 0 1-.866-.865v-4.326c0-.478.388-.866.866-.866z" mask="url(#g)" transform="matrix(-1 0 0 1 6.489 0)"/>
+            <path fill="#828292" d="M46.937 8.806v.5H.217v-.5z" mask="url(#g)"/>
+        </g>
+        <path stroke="#828292" stroke-width=".649" d="M80.558 86.56s13.604-.41 22.494-7.245c9.532-7.328 14.764-21.08 26.513-20.008"/>
+        <path fill="#3E3F44" d="M2 0h251a2 2 0 0 1 2 2v12H0V2a2 2 0 0 1 2-2zM196 30h57a2 2 0 0 1 2 2v112h-61V32a2 2 0 0 1 2-2z"/>
+    </g>
+</svg>

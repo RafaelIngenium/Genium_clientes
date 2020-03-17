@@ -2,8 +2,7 @@ import React, { lazy, Suspense, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Loading from "./components/Loading";
-// import Login from "./pages/Login";
-// import Index from "./pages/Index";
+import "./build/css/main.min.css"
 
 const Login = lazy(() => import("./pages/Login"));
 const Index = lazy(() => import("./pages/Index"));
@@ -34,7 +33,6 @@ function App({ userReducer, history }) {
           />
           <Route path="/app" render={() => <Index />} />
           <Route path="/login" render={() => <Login />} />
-          {/* <Route path="*" render={() => <Login />} /> */}
         </Suspense>
       </Switch>
     </div>

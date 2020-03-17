@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux"
 import SearchBar from "../misc/SearchBar";
 import CardResume from "../misc/CardResume";
 import TopFiveContainer from "../misc/TopFiveContainer";
 import ChartComponent from "../misc/ChartComponent";
+import TimeFormat from "hh-mm-ss"
 
 const DashboardComponent = () => {
   const location = useLocation();
+  const servicegroupReducer     = useSelector(state => state.servicegroupReducer);
+  const supervisiongroupReducer = useSelector(state => state.supervisiongroupReducer);
+  const queueReducer            = useSelector(state => state.queueReducer);
   //ComponenntDidMount
   useEffect(() => {}, []);
 
@@ -110,6 +115,34 @@ const DashboardComponent = () => {
     }
   ]);
 
+  let desempenhoRec        = 0;
+  let desempenhoAtd        = 0;
+  let desempenhoAtdSLA     = 0;
+  let desempenhotmatd      = 0;
+  let desempenhoAbdn       = 0;
+  let desempenhoGeral      = 0;
+  let resultadoTMA         = 0;
+  let resultadoTMASub      = 0;
+  let resultadoTMABNSub    = 0;
+  let resultadoTMEA        = 0;
+  let resultadoMTEA        = 0;
+  let resultadoTMEASub     = 0;
+  let resultadoTMABN       = 0;
+  let resultadoMTEASub     = 0;
+  let desempenhoTMAAbdn    = 0;
+  let desempenhoCurtas     = 0;
+  let desempenhoFila       = 0;
+  let desempenhoTMEA       = 0;
+  let desempenhoMTEA       = 0;
+  let desempenhoTransf     = 0;
+  let maxcallqueue         = 0;
+  let checkSLA             = false;
+  let valorSLA             = 0;
+  let arrayGrupo           = [];
+  let maxcallqueueDate     = 0;
+  let cdrmaxcallqueue      = null;
+  let totalFila            = 0;
+  
   return (
     <React.Fragment>
       <div className="main__body">
@@ -135,38 +168,100 @@ const DashboardComponent = () => {
               />
             </div>
           </div>
+          { supervisiongroupReducer.map(group => (
+                (() => { 
+                  if(checkSLA===false){
+                    valorSLA = group.slaatd
+                    checkSLA=true;
+                  }
+                                              
+                { servicegroupReducer.map(srvgrp => (
+                          (() => { 
+                                    if(parseInt(group.idsubservico)==parseInt(srvgrp.srvin)){ 
+                                        
+                                        arrayGrupo = [] ;
+                                        desempenhoRec     = parseInt(srvgrp.callcount)+parseInt(desempenhoRec);
+                                        desempenhoAtd     = parseInt(srvgrp.atdcount)+parseInt(desempenhoAtd);
+                                        desempenhoAtdSLA  = parseInt(srvgrp.atdslacount)+parseInt(desempenhoAtdSLA);
+                                        desempenhotmatd   = parseInt(srvgrp.tmatd)+parseInt(desempenhotmatd);
+                                        desempenhoAbdn    = parseInt(srvgrp.abncount)+parseInt(desempenhoAbdn);
+                                        desempenhoTMAAbdn = parseInt(srvgrp.tmabn)+parseInt(desempenhoTMAAbdn);
+                                        desempenhoCurtas  = parseInt(srvgrp.abnslacount)+parseInt(desempenhoCurtas);
+                                        desempenhoTMEA    = parseInt(srvgrp.tmansqueue)+parseInt(desempenhoTMEA);
+                                        desempenhoTransf  = parseInt(srvgrp.transfercount)+parseInt(desempenhoTransf);
+                                        desempenhoFila    = parseInt(srvgrp.queueanscount)+parseInt(desempenhoFila); 
+                                        desempenhoMTEA    = desempenhoMTEA > parseInt(srvgrp.mte) ? parseInt(desempenhoMTEA) : parseInt(srvgrp.mte);
+
+                                        
+                                        if((parseInt(srvgrp.nextcallqueue)>maxcallqueue)&&(parseInt(srvgrp.nextcallqueue)>0)) {
+                                        
+                                          maxcallqueue = parseInt(srvgrp.nextcallqueue);
+                                          cdrmaxcallqueue = parseInt(srvgrp.cdrnextcallqueue);
+                                          maxcallqueueDate = srvgrp.datemaxqueue;
+                                          console.log("srvgrp.datemaxqueue : ",srvgrp.datemaxqueue)
+
+                                        
+                                        }                                        
+                                    }
+
+                              }
+                          )()
+                        ))
+                    }
+              })()
+              ))
+            }
+
+          { 
+            (() => { 
+                desempenhoGeral = desempenhoAtdSLA > 0 ?  ((parseInt(desempenhoAtdSLA)/((parseInt(desempenhoRec))-(desempenhoAbdn-desempenhoCurtas)))*100) : 0;
+                desempenhoGeral = valorSLA>0 ? (desempenhoGeral / (valorSLA/100)) : desempenhoGeral;
+                desempenhoGeral = desempenhoGeral>100 ? 100 : desempenhoGeral;
+                resultadoTMA    = (TimeFormat.fromS(desempenhoAtd>0?(parseInt(desempenhotmatd)/parseInt(desempenhoAtd).toFixed(0)):0, 'hh:mm:ss')).split(".")
+                resultadoTMABN  = (TimeFormat.fromS(desempenhoAbdn>0?(parseInt(desempenhoTMAAbdn)/parseInt(desempenhoAbdn).toFixed(0)):0, 'hh:mm:ss')).split(".")
+                resultadoTMEA   = (TimeFormat.fromS(desempenhoFila>0?(parseInt(desempenhoTMEA)/parseInt(desempenhoFila).toFixed(0)):0, 'hh:mm:ss')).split(".")
+                resultadoMTEA   = (TimeFormat.fromS(desempenhoAtd>0?(parseInt(desempenhoMTEA)):0,'hh:mm:ss')).split(".")
+                totalFila       = queueReducer.filter(queue => queue.status === '1' || queue.status === 1);
+                totalFila       = totalFila.length;
+              }
+              )()
+          }
           <div className="resume-performace">
             <CardResume
               type="add"
-              value="1.4"
-              infoText="Atendimentos Concluidos"
+              value={desempenhoGeral.toFixed(2)+'%'}
+              infoText="Nível de serviço"
             />
-            <CardResume
-              type="add"
-              value="1.2"
-              infoText="Atendimentos Resolvidos"
-            />
+            <Link to={`${location.pathname}/details`}>
+              <CardResume
+                type="add"
+                value={totalFila}
+                infoText="Clientes em fila"
+              />
+            </Link>
           </div>
         </div>
       </div>
 
       <div className="flex-row">
         <div className="dash-resume-content">
-          <Link to={`${location.pathname}/details`}>
             <CardResume
               type="add"
               value="130"
-              infoText="Atendimentos em curso"
+              infoText="Clientes recebidos"
             />
-          </Link>
-          <CardResume type="info" value="130" infoText="BOT Info" />
+          <CardResume type="add" value="130" infoText="Clientes atendidos" />
 
-          {/* <CardResume type="info" value="130" infoText="BOT Info" />
-          <CardResume type="info" value="130" infoText="BOT Info" />
-          <CardResume type="info" value="130" infoText="BOT Info" />
-          <CardResume type="info" value="130" infoText="BOT Info" /> */}
+          <CardResume type="add" value="130" infoText="Tempo médio de atendimento" />
+          <CardResume type="add" value="130" infoText="Clientes abandonados" />
+          <CardResume type="add" value="130" infoText="Tempo médio de abandono" />
+          <CardResume type="add" value="130" infoText="Tempo médio de espera para atendimento" />
+          <CardResume type="add" value="130" infoText="Tempo médio de espera para atendimento" />
+          {/* <CardResume type="info" value="130" infoText="Tempo médio de espera para atendimento" /> */}
 
-          <CardResume type="add" value="" infoText="Adicionar parâmetro" />
+          <CardResume type="add" value="133" infoText="Maior tempo de espera para atendimento" />
+          <CardResume type="add" value="133" infoText="Clientes transferidos" />
+          <CardResume type="add" value="" infoText="Adicionar Parâmetro" />
         </div>
 
         <div className="dash-topfive-content">

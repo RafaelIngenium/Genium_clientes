@@ -49,5 +49,14 @@
   },
   "flows": {
     "title": "FLUXOS"
+  },
+  "insert_inputs": {
+    "title": "Favor preencher todos os campos"
+  },
+  "user_invalid": {
+    "title": "Usuário e senha inválidos"
+  },
+  "accept_msg_error": {
+    "title": "Aceite os termos para prosseguir"
   }
 }

@@ -26,7 +26,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         user: null,
         loading: false,
-        error: action.payload
+        error: true
       };
     case UserActionTypes.GET_USER_INFO:
       return {

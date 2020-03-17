@@ -2,7 +2,7 @@ import React from "react";
 import DashboardComponent from "../components/Dashboard/DashboardComponent";
 import SubPageHeader from "../components/misc/SubPageHeader";
 
-const Dashboard = () => {
+export default function Dashboard (props) {
   return (
     <React.Fragment>
       <SubPageHeader title="Dashboard" actionEnabled={false} />
@@ -10,5 +10,3 @@ const Dashboard = () => {
     </React.Fragment>
   );
 };
-
-export default Dashboard;

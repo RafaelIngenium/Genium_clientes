@@ -21,7 +21,7 @@ export const connection_platform = {
   ip_socket_extern: "192.168.71.243", // IP externo de conexão com WebSocket(IMSDN)
   port_socket_intern: "35065", // Porta interna de conexão com WebSocket(IMSDN)
   port_socket_extern: "35065", // Porta externa de conexão com WebSocket(IMSDN)
-  type_connect: "https", // Tipo de conexão com ou sem certificado
+  type_connect: "http", // Tipo de conexão com ou sem certificado
   type_socket: "ws"
 };
 

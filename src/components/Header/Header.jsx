@@ -1,6 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
-import { userLogout } from "../../store/user/user.actions";
+import { connect,useSelector } from "react-redux";
+import { userLogout } from "../../store/user/user.action";
 import { ReactComponent as IconBell } from "../../assets/images/icon-bell.svg";
 import { ReactComponent as Question } from "../../assets/images/question.svg";
 import { ReactComponent as Moon } from "../../assets/images/moon.svg";
@@ -9,6 +9,8 @@ import { ReactComponent as Out } from "../../assets/images/out.svg";
 import { PopOver } from "./../../utils/Typpy";
 
 const Header = ({ userLogout }) => {
+  const displayname = useSelector(state => state.userReducer.user.displayname);
+
   const handleLogOut = () => {
     userLogout();
   };
@@ -17,7 +19,7 @@ const Header = ({ userLogout }) => {
   const renderPopOver = () => {
     return (
       <div className="list-drop list-drop--primary">
-        <div className="header__user__name">Mickey Warson</div>
+        <div className="header__user__name">{displayname}</div>
         <div className="list-drop__item">
           <Moon />
           Dark Mode

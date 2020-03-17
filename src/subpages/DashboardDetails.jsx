@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux"
 import { Link, Route, useLocation, Redirect } from "react-router-dom";
 import SubPageHeader from "./../components/misc/SubPageHeader";
 import DashboardDetailsClient from "../components/Dashboard/clients/DashboardDetailsClient";
@@ -7,7 +8,6 @@ import ClientComponent from "../components/Dashboard/clients/ClientComponent";
 
 const DashboardDetails = () => {
   const location = useLocation();
-
   // useEffect(() => {}, [location]);
 
   return (

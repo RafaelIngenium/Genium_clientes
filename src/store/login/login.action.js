@@ -1,4 +1,6 @@
 import api from '../../services/api';
+import LoginActionTypes from "./login.types";
+import {create_info_environment} from "../environment/environment.action";
 
 export const put_info_user = (iduser,language) => {
     return (dispatch) => {
@@ -13,5 +15,4 @@ export const put_info_user = (iduser,language) => {
     };
 }
 
-export const create_info_user = (username) => ({ type: 'ADD_INFO_USER', username })
-export const create_info_environment = (language,sip_primary) => ({ type: 'ADD_INFO_ENVIRONMENT', language,sip_primary })
+export const create_info_user = (username) => ({ type: LoginActionTypes.ADD_INFO_USER, username })
