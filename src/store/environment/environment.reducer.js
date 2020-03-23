@@ -12,6 +12,11 @@ export default function environment(state = { language: localStorage.getItem('la
           ...state,
           language: action.language
         }
+      case EnvironmentActionTypes.INFO_TIME:
+        return {
+          ...state,
+          diff_time: action.diff_time.data
+        }
       default:
         return state;
     }

@@ -1,4 +1,4 @@
-import api from '../../services/api';
+import {api} from '../../services/api';
 import QueuePermissionActionTypes from "./queuepermission.types";
 
 export const get_info_queue_permission = (iduser) => {

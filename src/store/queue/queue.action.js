@@ -1,4 +1,4 @@
-import api from '../../services/api';
+import {api} from '../../services/api';
 import QueueActionTypes from "./queue.types";
 
 export const get_info_queue = (iduser) => {
@@ -14,3 +14,8 @@ export const get_info_queue = (iduser) => {
 }
 
 export const create_info_queue = (queue) => ({ type: QueueActionTypes.ADD_INFO_QUEUE, queue })
+export const addListCallQueue = (tipo, callqueueid, serviceinid, chamado, chamador, datahora,contrech, status, mediaid, cdrid, scriptid, callback_count, customerwait, contactname, pathfile) => ({ type: QueueActionTypes.ADD_QUEUE, callqueueid, serviceinid, chamado, chamador, datahora,  contrech, status, mediaid, cdrid , scriptid, callback_count, customerwait, contactname, pathfile})
+export const deleteListCallQueue = (callqueueid) => ({ type: QueueActionTypes.DELETE_QUEUE,	callqueueid})
+export const editListCallQueue = (tipo, callqueueid, serviceinid, chamado, chamador, datahora, contrech, status, mediaid, cdrid, customerwait, respcliente, respatendente, pathfile, anyreturn) => ({ type: QueueActionTypes.EDIT_QUEUE, callqueueid, serviceinid, chamado, chamador, datahora,  contrech, status, mediaid, cdrid,  customerwait, respcliente, respatendente, pathfile, anyreturn})
+export const returnListCallQueue = (tipo, callqueueid, status, callback_count, username) => ({ type: QueueActionTypes.RETURN_QUEUE, callqueueid, status, callback_count, username})
+export const returnListCallQueueObs = (tipo, callqueueid, status, anyreturn) => ({ type: QueueActionTypes.RETURN_QUEUEOBS, callqueueid, status, anyreturn})

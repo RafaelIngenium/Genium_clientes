@@ -12,7 +12,8 @@ const DashboardComponent = () => {
   const servicegroupReducer     = useSelector(state => state.servicegroupReducer);
   const supervisiongroupReducer = useSelector(state => state.supervisiongroupReducer);
   const queueReducer            = useSelector(state => state.queueReducer);
-  //ComponenntDidMount
+  const agents                  = useSelector(state => state.agentReducer);
+  
   useEffect(() => {}, []);
 
   const [graphType, setGraphType] = useState("line");
@@ -232,42 +233,42 @@ const DashboardComponent = () => {
               value={desempenhoGeral.toFixed(2)+'%'}
               infoText="Nível de serviço"
             />
-            <Link to={`${location.pathname}/details`}>
-              <CardResume
-                type="add"
-                value={totalFila}
-                infoText="Clientes em fila"
-              />
-            </Link>
+            <CardResume
+              type="add"
+              value={desempenhoRec}
+              infoText="Clientes recebidos"
+            />
           </div>
         </div>
       </div>
 
       <div className="flex-row">
         <div className="dash-resume-content">
-            <CardResume
-              type="add"
-              value="130"
-              infoText="Clientes recebidos"
-            />
-          <CardResume type="add" value="130" infoText="Clientes atendidos" />
+          <Link to={`${location.pathname}/details`}>
+              <CardResume
+                type="add"
+                value={totalFila}
+                infoText="Clientes em fila"
+              />
+          </Link>
+          <CardResume type="add" value={desempenhoAtd} infoText="Clientes atendidos" />
 
-          <CardResume type="add" value="130" infoText="Tempo médio de atendimento" />
-          <CardResume type="add" value="130" infoText="Clientes abandonados" />
-          <CardResume type="add" value="130" infoText="Tempo médio de abandono" />
-          <CardResume type="add" value="130" infoText="Tempo médio de espera para atendimento" />
-          <CardResume type="add" value="130" infoText="Tempo médio de espera para atendimento" />
+          <CardResume type="add" value={resultadoTMA[0]} infoText="Tempo médio de atendimento" />
+          <CardResume type="add" value={desempenhoAbdn} infoText="Clientes abandonados" />
+          <CardResume type="add" value={resultadoTMABN[0]} infoText="Tempo médio de abandono" />
+          <CardResume type="add" value={resultadoTMEA[0]} infoText="Tempo médio de espera para atendimento" />
+          {/* <CardResume type="add" value="130" infoText="Tempo médio de espera para atendimento" /> */}
           {/* <CardResume type="info" value="130" infoText="Tempo médio de espera para atendimento" /> */}
 
-          <CardResume type="add" value="133" infoText="Maior tempo de espera para atendimento" />
-          <CardResume type="add" value="133" infoText="Clientes transferidos" />
+          <CardResume type="add" value={resultadoMTEA[0]} infoText="Maior tempo de espera para atendimento" />
+          <CardResume type="add" value={desempenhoTransf} infoText="Clientes transferidos" />
           <CardResume type="add" value="" infoText="Adicionar Parâmetro" />
         </div>
 
         <div className="dash-topfive-content">
-          <TopFiveContainer label="TOP 5 USUÁRIOS ATIVOS" type="user" />
+          <TopFiveContainer label="TOP 5 USUÁRIOS ATIVOS" type="user" agents={agents}/>
 
-          <TopFiveContainer label="TOP 5 FLUXOS" type="flow" />
+          <TopFiveContainer label="TOP 5 FLUXOS" type="flow" agents={agents} />
         </div>
       </div>
     </React.Fragment>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import DashboardDetailTabBItem from "./DashboardDetailTabBItem";
 
 const DashboardDetailTabB = () => {
-  const [items, setItems] = useState(["1", "2"]);
+  const queueReducer = useSelector(state => state.queueReducer);
 
   return (
     <div className="table-card table-card--flows-out active">
@@ -20,8 +21,8 @@ const DashboardDetailTabB = () => {
       </div>
 
       <div className="table-card__body">
-        {items.map(item => (
-          <DashboardDetailTabBItem key={item} />
+      {queueReducer.filter(item => item.status === '1' || item.status === 1).map(item => (
+          <DashboardDetailTabBItem key={item}  item={item} />
         ))}
       </div>
     </div>

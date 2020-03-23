@@ -7,6 +7,7 @@ import { ReactComponent as Moon } from "../../assets/images/moon.svg";
 import { ReactComponent as Settings } from "../../assets/images/settings.svg";
 import { ReactComponent as Out } from "../../assets/images/out.svg";
 import { PopOver } from "./../../utils/Typpy";
+import DEFAULT from "../../build/images/default.png"
 
 const Header = ({ userLogout }) => {
   const displayname = useSelector(state => state.userReducer.user.displayname);
@@ -61,7 +62,7 @@ const Header = ({ userLogout }) => {
               <div className="header__user__photo">
                 <img
                   className="header__user__photo__img"
-                  src="https://image.freepik.com/fotos-gratis/adolescente-feliz-que-mostra-gestos-positivos_1149-951.jpg"
+                  src={DEFAULT}
                   alt=""
                 />
               </div>
