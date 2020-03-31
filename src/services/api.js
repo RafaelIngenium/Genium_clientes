@@ -1,11 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://cloud.ingweb.com.br:3333"
-});
-
-export const apiConectionPlatform = axios.create({
-  baseURL: "http://cloud.ingweb.com.br:8080/conn"
+  baseURL: "https://cloud.ingweb.com.br:3333"
 });
 
 export const connection_platform = {
@@ -21,8 +17,8 @@ export const connection_platform = {
   ip_socket_extern: "192.168.71.243", // IP externo de conexão com WebSocket(IMSDN)
   port_socket_intern: "35065", // Porta interna de conexão com WebSocket(IMSDN)
   port_socket_extern: "35065", // Porta externa de conexão com WebSocket(IMSDN)
-  type_connect: "http", // Tipo de conexão com ou sem certificado
-  type_socket: "ws"
+  type_connect: "https", // Tipo de conexão com ou sem certificado
+  type_socket: "wss"
 };
 
 // export default api;

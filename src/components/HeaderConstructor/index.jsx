@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { connect, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { connect, useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {ReactComponent as Overdue} from "../../build/images/overdue.svg"
 import {ReactComponent as Warning} from "../../build/images/warning.svg"
 import {ReactComponent as Checkmark} from "../../build/images/checkmark.svg"
@@ -15,8 +15,11 @@ import {ReactComponent as Comments} from "../../build/images/comments-alt.svg"
 import {ReactComponent as SideWindow} from "../../build/images/side-window.svg" 
 import question from "../../build/images/question.svg"
 import settings from "../../build/images/side-window.svg" 
+import { changeHeader } from "../../store/environment/environment.action";
 
 const HeaderConstructor = ({changemodescreen,changemodeflow}) => {
+  const dispatch                        = useDispatch();   
+  const history                         = useHistory();
   const classConstructor                = useSelector(state => state.environmentReducer.class_constructor);
   const [mode, changeMode]              = useState('constructor');
   const [modeflow, changeTypeFlow]      = useState('advanced');
@@ -31,12 +34,20 @@ const HeaderConstructor = ({changemodescreen,changemodeflow}) => {
     changeTypeFlow(mode)
   }
 
+  function returnHeader(){
+      if(classConstructor === 'diagram')
+        dispatch(changeHeader(''));
+      else
+        history.push("/app/sitemap");
+
+  }
+
   return (
       <React.Fragment>
           <div class={classConstructor}>
             <div class="header header--first-fluxo">
-                <a href="#" class="back">
-                    <Link to={"/app/sitemap"}><i class="material-icons">arrow_back</i></Link>
+                <a href="#" class="back" onClick={returnHeader}>
+                    <i class="material-icons">arrow_back</i>
                     <div class="back__title">Meu primeiro fluxo</div>
                 </a>
 

@@ -13,6 +13,7 @@ const DashboardComponent = () => {
   const supervisiongroupReducer = useSelector(state => state.supervisiongroupReducer);
   const queueReducer            = useSelector(state => state.queueReducer);
   const agents                  = useSelector(state => state.agentReducer);
+  const flows                   = useSelector(state => state.topfiveflowReducer);
   
   useEffect(() => {}, []);
 
@@ -268,7 +269,7 @@ const DashboardComponent = () => {
         <div className="dash-topfive-content">
           <TopFiveContainer label="TOP 5 USUÁRIOS ATIVOS" type="user" agents={agents}/>
 
-          <TopFiveContainer label="TOP 5 FLUXOS" type="flow" agents={agents} />
+          <TopFiveContainer label="TOP 5 FLUXOS" type="flow" flows={flows} />
         </div>
       </div>
     </React.Fragment>

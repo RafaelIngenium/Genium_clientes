@@ -63,9 +63,9 @@ export default function Login () {
 
   function showPassword(){
     if(seePass)
-    document.getElementById('password').type = 'text';
+    document.getElementById('resend-password').type = 'text';
     else
-    document.getElementById('password').type = 'password';
+    document.getElementById('resend-password').type = 'password';
     setSeePass(!seePass)
   }
 

@@ -6,6 +6,7 @@ import { get_info_queue } from '../queue/queue.action'
 import { get_info_agents } from '../agent/agent.action'
 import { get_info_queue_permission } from '../queuepermission/queuepermission.action'
 import { get_info_diff_time } from '../environment/environment.action'
+import { get_top_five_flow } from '../topfiveflow/topfiveflow.action'
 import setupSocket from '../../services/imsdn'
 import Moment from 'moment'
 
@@ -63,6 +64,7 @@ export const userLoginAsync = (username, password) => {
         get_info_queue(user.data.id)(dispatch);
         get_info_queue_permission(user.data.id)(dispatch);
         get_info_agents(user.data.id)(dispatch);
+        get_top_five_flow(user.data.id)(dispatch);
       }
     } catch (error) {
       dispatch(userLoginFailure(error));

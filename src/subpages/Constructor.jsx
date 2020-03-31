@@ -30,7 +30,7 @@ import {ReactComponent as Tree} from "../build/images/tree.svg"
 import Video from "../build/images/video.svg"
 import Attachment2 from "../build/images/attachment2.svg"
 import Attribute from "../build/images/attribute.svg"
-import { changeScreenHeader } from "../store/environment/environment.action";
+import { changeHeader } from "../store/environment/environment.action";
 
 export default function Constructor () {
   const dispatch                            = useDispatch();  
@@ -47,7 +47,7 @@ export default function Constructor () {
   }
 
   function changeScreenHeader (mode) {
-    dispatch(changeScreenHeader(mode));
+    dispatch(changeHeader(mode));
   }
 
   return (
@@ -938,7 +938,7 @@ export default function Constructor () {
 
                                 </div>
 
-                                <div  class="btn-flow"><Tree />Trace Path</div>
+                                <div onClick={() => changeScreenHeader('diagram')} class="btn-flow"><Tree />Trace Path</div>
                             </div>
 
                         </div>

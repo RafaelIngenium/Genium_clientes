@@ -93,7 +93,7 @@ const setupSocket = (
         case "Received: USRMSGLOGREAD":
           break;
         case "Received: INFO":
-          console.log(novadata)
+            //console.log(novadata)
             let CDRID         = novadata.indexOf("CDRID");
             let PSDCOUNT      = novadata.indexOf("PSDCOUNT");
             let PSDTMA        = novadata.indexOf("PSDTMA");

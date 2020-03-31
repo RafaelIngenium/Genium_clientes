@@ -7,7 +7,7 @@ export default function agents (state = [], action){
                 return agent
               })
     case AgentActionTypes.REFRESH_AGENT:
-      console.log(action)
+      //console.log(action)
         var exist = false
         state.map(agent => {
           if(agent.iduser === action.id)
