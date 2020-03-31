@@ -11,7 +11,7 @@ import intl from 'react-intl-universal';
 import Feito from "../build/images/genium-mascot.png"
 import {ReactComponent as View} from "../build/images/view.svg"
 import {ReactComponent as Checkmark} from "../build/images/checkmark.svg"
-import VIDEOBUILD from "../build/images/Genium - Build Together.m4v"
+import VIDEOBUILD from "../build/images/Genium-Build-Together.gif"
 
 const locales = {
   'pt-BR': require('../locales/pt-BR.json'),
@@ -25,6 +25,7 @@ export default function Login () {
   const [username, setUsername]    = useState("");
   const [password, setPassword]    = useState("");
   const [acceptTherm, setTherm]    = useState(false);
+  const [seePass, setSeePass]      = useState(true);
   const [errorInputs, setInputs]   = useState(false);
   const [errorTherm, setMsgtherm]  = useState(false);         
   const dispatch                   = useDispatch();
@@ -60,6 +61,14 @@ export default function Login () {
     localStorage.setItem('language_genium', language);
   }
 
+  function showPassword(){
+    if(seePass)
+    document.getElementById('password').type = 'text';
+    else
+    document.getElementById('password').type = 'password';
+    setSeePass(!seePass)
+  }
+
   intl.init({
     currentLocale,
     locales
@@ -73,43 +82,49 @@ export default function Login () {
                     <div class="logo-login">
                         <img src={Mascot} alt="" />
                     </div>
-                    <a href="#">Sign Up</a>
+                    <a href="#">Inscrever-se</a>
                   </div>
 
                   <div class="container-login active">
                       <form class="form-login" onSubmit={handleLogin} >
                         <div class="title">{intl.get('sign_login.title')} Genium</div>
 
-                        <div class="container-inputs">
-                          <label for="email">{intl.get('user.title')}</label>
+                        <div class={userFailure || errorInputs ? "container-inputs erro": "container-inputs"}>
+                          <label for="resend-email">{intl.get('user.title')}</label>
                           <input 
-                            id="email" 
+                            id="resend-email" 
                             type="email" 
-                            placeholder="john@appleseed.com"
+                            placeholder=""
                             onChange={event => setUsername(event.target.value)}
                             value={username}
                          />
                         </div>
 
-                        <div class="container-inputs">
+                        <div class={userFailure || errorInputs ? "container-inputs erro": "container-inputs"}>
                           <div class="label-pasword">
-                            <label for="password" placeholder={intl.get('password.title')}> {intl.get('password.title')}</label>
-                            <div class="forgotLink">Forgot?</div>
+                            <label for="resend-password" placeholder={intl.get('password.title')}> {intl.get('password.title')}</label>
+                            {/* <div class="forgotLink">Forgot?</div> */}
                           </div>
 
                           <div class="container-inputs__input">
                             <input 
                               type="password" 
-                              id="password" 
-                              placeholder={intl.get('password.title')}
+                              id="resend-password" 
+                              placeholder=""
                               alt=""
                               onChange={event => setPassword(event.target.value)}
                               value={password}
                             />
-                            <div class="icon active">
+                            <div class={seePass ? 'icon active':'icon'} onClick={showPassword}>
                               <View />
                             </div>
                           </div>
+                          {userFailure && (
+                              <span className="erro-resend">{intl.get('user_invalid.title')}</span>
+                            )}
+                            {errorInputs && (
+                                <span className="erro-resend">{intl.get('insert_inputs.title')}</span>
+                            )}
                         </div>
                         <button class="btn btn--primary" type="submit" onClick={handleLogin}>{intl.get('login.title')}</button>
                       </form>
@@ -186,7 +201,7 @@ export default function Login () {
                       </div>
 
                       <div class="wrapper-anim-col2">
-                        <video src={VIDEOBUILD} autoPlay loop></video>
+                        <img src={VIDEOBUILD} />
                       </div>
 
               </div>
