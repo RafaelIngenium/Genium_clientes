@@ -938,7 +938,7 @@ export default function Constructor () {
 
                                 </div>
 
-                                <div onClick={() => changeScreenHeader('diagram')} class="btn-flow"><Tree />Trace Path</div>
+                                <div  class="btn-flow"><Tree />Trace Path</div>
                             </div>
 
                         </div>
