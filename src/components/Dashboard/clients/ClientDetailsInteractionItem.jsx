@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import MediaItem from "../../misc/MediaItem";
-import { ReactComponent as Whatsapp } from "../../../assets/images/whatsapp-icon.svg";
-import { ReactComponent as WebChat } from "../../../assets/images/webchat-icon.svg";
-import { ReactComponent as Messenger } from "../../../assets/images/messenger-icon.svg";
-import { ReactComponent as Voice } from "../../../assets/images/voz-icon.svg";
+import { ReactComponent as Whatsapp } from "../../../build/images/whatsapp-icon.svg";
+import { ReactComponent as WebChat } from "../../../build/images/webchat-icon.svg";
+import { ReactComponent as Messenger } from "../../../build/images/messenger-icon.svg";
+import { ReactComponent as Voice } from "../../../build/images/voz-icon.svg";
 
 const ClientDetailsInteractionItem = ({ channel }) => {
   return (

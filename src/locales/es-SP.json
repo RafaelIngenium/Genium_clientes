@@ -15,7 +15,7 @@
     "title": "Terminos de Servicio"
   },
   "login": {
-    "title": "Entrar"
+    "title": "Iniciar sesión"
   },
   "remember_pass": {
     "title": "Olvido la contraseña"
@@ -58,5 +58,8 @@
   },
   "accept_msg_error": {
     "title": "Acepta los términos para proceder"
+  },
+  "sign_login": {
+    "title": "Registrarse en"
   }
 }

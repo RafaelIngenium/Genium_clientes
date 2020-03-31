@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ImageSrc from "../../../src/assets/images/genium-mascot.png";
+import ImageSrc from "../../../src/build/images/genium-mascot.png";
 
 const ModalMoveFolder = () => {
   const [btnActive, setBtnActive] = useState(false);

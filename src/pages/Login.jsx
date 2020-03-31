@@ -1,13 +1,17 @@
 import React, { useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Mascot from "../assets/images/genium-mascot.png";
+import Mascot from "../build/images/genium-mascot.png";
 import { userLoginAsync } from "../store/user/user.action";
 import { changeLanguage } from "../store/environment/environment.action";
 import md5 from "md5";
-import pt from '../assets/images/pt.png';
-import es from '../assets/images/es.png';
-import en from '../assets/images/en.png';
+import pt from '../build/images/pt.png';
+import es from '../build/images/es.png';
+import en from '../build/images/en.png';
 import intl from 'react-intl-universal';
+import Feito from "../build/images/genium-mascot.png"
+import {ReactComponent as View} from "../build/images/view.svg"
+import {ReactComponent as Checkmark} from "../build/images/checkmark.svg"
+import VIDEOBUILD from "../build/images/Genium - Build Together.m4v"
 
 const locales = {
   'pt-BR': require('../locales/pt-BR.json'),
@@ -62,122 +66,136 @@ export default function Login () {
   });
 
   return (
-    <div className="login">
-      <div className="login__wrapper">
-        <div className="login__content">
-          <div className="login__content__logo">
-            <div className="login__content__logo__img">
-              <img src={Mascot} alt="" />
-            </div>
-            <div className="login__content__logo__text">Genium</div>
-          </div>
+          <div class="login">
+              <div class="login__wrapper">
+                <div class="login__wrapper__col1">
+                  <div class="header-login">
+                    <div class="logo-login">
+                        <img src={Mascot} alt="" />
+                    </div>
+                    <a href="#">Sign Up</a>
+                  </div>
 
-          <div className="login__content__title">
-              {intl.get('welcome.title')}
-          </div>
-          {userFailure && (
-            <p
-              style={{
-                color: "red",
-                fontSize: "12px",
-                textAlign: "center",
-                marginBottom: "4px",
-                fontWeight: "bold"
-              }}
-            >
-              {intl.get('user_invalid.title')}
-            </p>
-          )}
-          {errorInputs && (
-            <p
-              style={{
-                color: "red",
-                fontSize: "12px",
-                textAlign: "center",
-                marginBottom: "4px",
-                fontWeight: "bold"
-              }}
-            >
-               {intl.get('insert_inputs.title')}
-            </p>
-          )}
-          {errorTherm && (
-            <p
-              style={{
-                color: "red",
-                fontSize: "12px",
-                textAlign: "center",
-                marginBottom: "4px",
-                fontWeight: "bold"
-              }}
-            >
-             {intl.get('accept_msg_error.title')}
-            </p>
-          )}
-          <form onSubmit={handleLogin} className="login__content__form">
-            <div className="login__content__form__input">
-              <label>{intl.get('user.title')}</label>
-              <input
-                type="text"
-                placeholder={intl.get('user.title')}
-                alt=""
-                onChange={event => setUsername(event.target.value)}
-                value={username}
-              />
-            </div>
+                  <div class="container-login active">
+                      <form class="form-login" onSubmit={handleLogin} >
+                        <div class="title">{intl.get('sign_login.title')} Genium</div>
 
-            <div className="login__content__form__input">
-              <label>{intl.get('password.title')}</label>
-              <input
-                type="password"
-                placeholder={intl.get('password.title')}
-                alt=""
-                onChange={event => setPassword(event.target.value)}
-                value={password}
-              />
-            </div>
+                        <div class="container-inputs">
+                          <label for="email">{intl.get('user.title')}</label>
+                          <input 
+                            id="email" 
+                            type="email" 
+                            placeholder="john@appleseed.com"
+                            onChange={event => setUsername(event.target.value)}
+                            value={username}
+                         />
+                        </div>
 
-            <div className="login__content__form__terms">
-              <label className="checkbox">
-                <input
-                  className="login__content__form__terms__input"
-                  type="checkbox"
-                  onClick={event => setTherm(event.target.checked)}
-                  id="term_accept"
-                  name="term_accept"
-                  checked={acceptTherm}
-                />
+                        <div class="container-inputs">
+                          <div class="label-pasword">
+                            <label for="password" placeholder={intl.get('password.title')}> {intl.get('password.title')}</label>
+                            <div class="forgotLink">Forgot?</div>
+                          </div>
 
-                <div className="login__content__form__terms__text">
-                  {intl.get('accept.title')}
-                  <span>
-                    <span
-                      className="login__content__form__terms__link"
-                      href="#"
-                    >
-                      {intl.get('terms.title')}
-                    </span>
-                  </span>
-                </div>
-              </label>
-            </div>
+                          <div class="container-inputs__input">
+                            <input 
+                              type="password" 
+                              id="password" 
+                              placeholder={intl.get('password.title')}
+                              alt=""
+                              onChange={event => setPassword(event.target.value)}
+                              value={password}
+                            />
+                            <div class="icon active">
+                              <View />
+                            </div>
+                          </div>
+                        </div>
+                        <button class="btn btn--primary" type="submit" onClick={handleLogin}>{intl.get('login.title')}</button>
+                      </form>
+                  </div>
 
-            <div className="login__content__form__btn-container">
-              <button type="submit" className="btn btn--primary" onClick={handleLogin}>
-                {intl.get('login.title')}
-              </button>
-              <button className="btn-text btn-text--underline">
-                {intl.get('remember_pass.title')}?
-              </button>
+                  <div class="container-forgot">
+                    <form action="" class="form-login">
+
+                      <div class="notification success ">
+                        <Checkmark /> A Email has been to reset your password
+                      </div>
+
+
+                      <div class="title">Forgot Password?</div>
+                      <div class="text">Enter your email to reset your password</div>
+
+                      <div class="container-inputs">
+                        <label for="resend-email">Email</label>
+                        <input id="resend-email" type="email" placeholder="john@appleseed.com" require />
+
+                        <span class="erro-resend">Please provide a vaid email</span>
+
+                      </div>
+
+                      <button class="btn btn--primary" type="submit">Reset password</button>
+
+                      <span class="span-link">Go back to <a href="#">Sign in</a></span>
+                    </form>
+                  </div>
+
+
+                  <div class="container-reset-password">
+                    <form action="" class="form-login">
+                      <div class="title">Reset Password</div>
+                        <div class="text"> Enter the password you want to set </div>
+
+                        <div class="container-inputs">
+                          <div class="container-inputs__input">
+                            <input type="password" placeholder="New password" />
+                            <div class="icon">
+                              <View />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="container-inputs">
+
+                          <div class="container-inputs__input ">
+                            <input type="password" placeholder="Verify" />
+                            <div class="icon">
+                                <View />
+                            </div>
+                          </div>
+                        </div>
+
+                      <button class="btn btn--primary" type="submit">Reset password</button>
+                    </form>
+                  </div>
+
+                    <div class="container-finish">
+                      <div class="form-login">
+                        <div class="title">Feito</div>
+                          <div class="text"> Your new password has been set. </div>
+                            <img src={Feito} alt="" />
+                          <button class="btn btn--primary" type="submit">Login</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="login__wrapper__col2">
+
+                      <div class="title">
+                        Build Together for better
+                      </div>
+
+                      <div class="wrapper-anim-col2">
+                        <video src={VIDEOBUILD} autoPlay loop></video>
+                      </div>
+
+              </div>
             </div>
-          </form>
-        </div>
-      </div>
-      <div style={{ float: 'right', margin: '20px', cursor: 'pointer' }}>
-            <img src={pt} width="35" alt="pt-BR" onClick={() => handleLanguage('pt-BR')} />
-            <img src={en} width="35" alt="en-US" onClick={() => handleLanguage('en-US')} />
-            <img src={es} width="35" alt="es-SP" onClick={() => handleLanguage('es-SP')} />
-      </div>
-    </div>
+            <div style={{ float: 'right', margin: '20px', cursor: 'pointer' }}>
+                  <img src={pt} width="35" alt="pt-BR" onClick={() => handleLanguage('pt-BR')} />
+                  <img src={en} width="35" alt="en-US" onClick={() => handleLanguage('en-US')} />
+                  <img src={es} width="35" alt="es-SP" onClick={() => handleLanguage('es-SP')} />
+            </div>
+       </div>
   );
 }

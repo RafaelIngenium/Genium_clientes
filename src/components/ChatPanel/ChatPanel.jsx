@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MiniChat from "./MiniChat";
-import { ReactComponent as NounChat } from "../../assets/images/noun-chat.svg";
+import { ReactComponent as NounChat } from "../../build/images/noun-chat.svg";
 
 const ChatPanel = () => {
   const [chatPanelStatus, setChatPanelStatus] = useState(false);

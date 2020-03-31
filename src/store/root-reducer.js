@@ -9,7 +9,8 @@ import supervisiongroupReducer from "./supervisiongroup/supervisiongroup.reducer
 import servicegroupReducer from "./servicegroup/servicegroup.reducer";
 import queuepermissionReducer from "./queuepermission/queuepermission.reducer";
 import agentReducer from "./agent/agent.reducer";
+import topfiveflowReducer from "./topfiveflow/topfiveflow.reducer"
 
-const rootReducer = combineReducers({ userReducer, modalReducer, loginReducer, environmentReducer, supervisiongroupReducer, servicegroupReducer, queueReducer, queuepermissionReducer, agentReducer });
+const rootReducer = combineReducers({ userReducer, modalReducer, loginReducer, environmentReducer, supervisiongroupReducer, servicegroupReducer, queueReducer, queuepermissionReducer, agentReducer, topfiveflowReducer });
 
 export default rootReducer;

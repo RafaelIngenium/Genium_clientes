@@ -1,13 +1,13 @@
 import React from "react";
 import { connect,useSelector } from "react-redux";
 import { userLogout } from "../../store/user/user.action";
-import { ReactComponent as IconBell } from "../../assets/images/icon-bell.svg";
-import { ReactComponent as Question } from "../../assets/images/question.svg";
-import { ReactComponent as Moon } from "../../assets/images/moon.svg";
-import { ReactComponent as Settings } from "../../assets/images/settings.svg";
-import { ReactComponent as Out } from "../../assets/images/out.svg";
+import { ReactComponent as IconBell } from "../../build/images/icon-bell.svg";
+import { ReactComponent as Question } from "../../build/images/question.svg";
+import { ReactComponent as Moon } from "../../build/images/moon.svg";
+import { ReactComponent as Settings } from "../../build/images/settings.svg";
+import { ReactComponent as Out } from "../../build/images/out.svg";
 import { PopOver } from "./../../utils/Typpy";
-import DEFAULT from "../../build/images/default.png"
+import DEFAULT from "../../build/images/Profile Bot -1.png"
 
 const Header = ({ userLogout }) => {
   const displayname = useSelector(state => state.userReducer.user.displayname);

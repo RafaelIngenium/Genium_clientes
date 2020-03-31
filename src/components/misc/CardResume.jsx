@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { ReactComponent as BookMedical } from "../../assets/images/book-medical.svg";
-import { ReactComponent as ChartBar } from "../../assets/images/chart-bar.svg";
-import { ReactComponent as ChartBarAlt } from "../../assets/images/chart-bar-alt.svg";
-import { ReactComponent as ChartLine } from "../../assets/images/chart-line.svg";
-import { ReactComponent as Dashboard } from "../../assets/images/dashboard.svg";
-import { ReactComponent as ChartPie } from "../../assets/images/chart-pie.svg";
+import { ReactComponent as BookMedical } from "../../build/images/book-medical.svg";
+import { ReactComponent as ChartBar } from "../../build/images/chart-bar.svg";
+import { ReactComponent as ChartBarAlt } from "../../build/images/chart-bar-alt.svg";
+import { ReactComponent as ChartLine } from "../../build/images/chart-line.svg";
+import { ReactComponent as Dashboard } from "../../build/images/dashboard.svg";
+import { ReactComponent as ChartPie } from "../../build/images/chart-pie.svg";
 import { PopOver } from "../../utils/Typpy";
 import ChartComponent from "./ChartComponent";
 

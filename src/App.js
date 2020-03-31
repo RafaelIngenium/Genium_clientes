@@ -2,7 +2,6 @@ import React, { lazy, Suspense, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Loading from "./components/Loading";
-import "./build/css/main.min.css"
 
 const Login = lazy(() => import("./pages/Login"));
 const Index = lazy(() => import("./pages/Index"));
@@ -14,7 +13,6 @@ function App({ userReducer, history }) {
   useEffect(() => {
     setCurrentUser(userReducer.user);
     setError(userReducer.error);
-    // history.push("/");
   }, [userReducer]);
 
   return (

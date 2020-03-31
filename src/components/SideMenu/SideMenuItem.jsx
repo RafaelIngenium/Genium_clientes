@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
-import { ReactComponent as GraphBar } from "../../assets/images/graph-bar.svg";
-import { ReactComponent as SiteMap } from "../../assets/images/sitemap.svg";
-import { ReactComponent as Robot } from "../../assets/images/robot.svg";
-import { ReactComponent as CommentsAlt } from "../../assets/images/comments-alt.svg";
-import { ReactComponent as ExchangeAlt } from "../../assets/images/exchange-alt.svg";
+import { ReactComponent as GraphBar } from "../../build/images/graph-bar.svg";
+import { ReactComponent as SiteMap } from "../../build/images/sitemap.svg";
+import { ReactComponent as Robot } from "../../build/images/robot.svg";
+import { ReactComponent as CommentsAlt } from "../../build/images/comments-alt.svg";
+import { ReactComponent as ExchangeAlt } from "../../build/images/exchange-alt.svg";
 
 const SideMenuItem = props => {
   const { path, icon } = props;

@@ -1,11 +1,10 @@
 import React from "react";
 import _ from "lodash";
 import DEFAULT from "../../build/images/default.png"
+import BOT from "../../build/images/Profile Bot -1.png"
 
 const TopFiveItem = ({ type,agents }) => {
-  console.log("ANTES", agents)
   agents = _.orderBy(agents, ['insla'],['desc']);
-  console.log("DEPOIS", agents)
   return (
     <>
         {type === "user" && (
@@ -44,7 +43,7 @@ const TopFiveItem = ({ type,agents }) => {
                   <div className="user-info__photo">
                     <img
                       className="user-info__photo__img"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh7MB3vS-7uVvMEqlf-ExEJgJ64b0ozAA0Un8GQrbwOnZG6dZqjQ"
+                      src={BOT}
                       alt=""
                     />
                   </div>

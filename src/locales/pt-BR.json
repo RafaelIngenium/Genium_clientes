@@ -58,5 +58,8 @@
   },
   "accept_msg_error": {
     "title": "Aceite os termos para prosseguir"
+  },
+  "sign_login": {
+    "title": "Entre para o"
   }
 }

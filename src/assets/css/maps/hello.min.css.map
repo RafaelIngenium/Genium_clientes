@@ -1,1 +1,0 @@
-{"version":3,"sources":["hello.scss"],"names":[],"mappings":"AAAA,EACI,SAAU,CACV,cAAe,CACf,eAAgB","file":"../hello.min.css","sourcesContent":["* {\n    color: red; \n    font-size: 29px;  \n    font-weight: 700;\n}   "]}

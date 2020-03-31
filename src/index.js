@@ -7,6 +7,7 @@ import App from "./App";
 import "./index.css";
 import "material-icons/iconfont/material-icons.css";
 import "./correction.css";
+import "./build/css/main.min.css"
 
 ReactDOM.render(
   <Provider store={store}>

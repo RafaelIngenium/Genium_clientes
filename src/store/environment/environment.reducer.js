@@ -17,6 +17,11 @@ export default function environment(state = { language: localStorage.getItem('la
           ...state,
           diff_time: action.diff_time.data
         }
+      case EnvironmentActionTypes.CHANGE_SCREEN_HEADER:
+        return {
+          ...state,
+          class_constructor: action.screen
+        }
       default:
         return state;
     }

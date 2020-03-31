@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ReactComponent as MagnifyingGlass } from "../../assets/images/magnifying-glass.svg";
+import { ReactComponent as MagnifyingGlass } from "../../build/images/magnifying-glass.svg";
 
 const SearchBar = ({ extraClasses }) => {
   const [searchValue, setSearchValue] = useState("");

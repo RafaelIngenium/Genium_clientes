@@ -1,6 +1,6 @@
 import React from "react";
-import { ReactComponent as SendMinichat } from "../../assets/images/send-minichat.svg";
-import { ReactComponent as Attachment } from "../../assets/images/attachment.svg";
+import { ReactComponent as SendMinichat } from "../../build/images/send-minichat.svg";
+import { ReactComponent as Attachment } from "../../build/images/attachment.svg";
 
 const MiniChatFooter = () => {
   return (

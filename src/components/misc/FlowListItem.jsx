@@ -7,10 +7,10 @@ import {
   showModalEdit
 } from "../../store/modal/modal.actions";
 import MicroModal from "micromodal";
-import { ReactComponent as DelIcon } from "../../assets/images/del-alt.svg";
-import { ReactComponent as MoveIcon } from "../../assets/images/move-alt.svg";
-import { ReactComponent as EditIcon } from "../../assets/images/edit-alt.svg";
-import { ReactComponent as DoubleIcon } from "../../assets/images/double-alt.svg";
+import { ReactComponent as DelIcon } from "../../build/images/del-alt.svg";
+import { ReactComponent as MoveIcon } from "../../build/images/move-alt.svg";
+import { ReactComponent as EditIcon } from "../../build/images/edit-alt.svg";
+import { ReactComponent as DoubleIcon } from "../../build/images/double-alt.svg";
 
 MicroModal.init();
 

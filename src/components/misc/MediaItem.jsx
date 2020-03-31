@@ -1,10 +1,10 @@
 import React from "react";
-import { ReactComponent as Calendar } from "../../assets/images/calendar-alt.svg";
-import { ReactComponent as Clock } from "../../assets/images/clock.svg";
-import { ReactComponent as Whatsapp } from "../../assets/images/whatsapp-icon.svg";
-import { ReactComponent as WebChat } from "../../assets/images/webchat-icon.svg";
-import { ReactComponent as Messenger } from "../../assets/images/messenger-icon.svg";
-import { ReactComponent as Voice } from "../../assets/images/voz-icon.svg";
+import { ReactComponent as Calendar } from "../../build/images/calendar-alt.svg";
+import { ReactComponent as Clock } from "../../build/images/clock.svg";
+import { ReactComponent as Whatsapp } from "../../build/images/whatsapp-icon.svg";
+import { ReactComponent as WebChat } from "../../build/images/webchat-icon.svg";
+import { ReactComponent as Messenger } from "../../build/images/messenger-icon.svg";
+import { ReactComponent as Voice } from "../../build/images/voz-icon.svg";
 
 const MediaItem = ({ mediaType, mediaValue }) => {
   return (

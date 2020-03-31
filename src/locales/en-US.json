@@ -58,6 +58,9 @@
   },
   "accept_msg_error": {
     "title": "Accept the terms to proceed"
+  },
+  "sign_login": {
+    "title": "Sign in to"
   }
 }
 

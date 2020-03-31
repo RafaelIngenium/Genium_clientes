@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as Edit } from "../../assets/images/edit.svg";
+import { ReactComponent as Edit } from "../../build/images/edit.svg";
 
 const ModalAddFolder = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import MascotLogo from "../../assets/images/genium-mascot.png";
+import MascotLogo from "../../build/images/genium-mascot.png";
 import SideMenuItem from "./SideMenuItem";
 
 const SideMenu = () => {
