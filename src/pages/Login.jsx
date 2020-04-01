@@ -26,8 +26,7 @@ export default function Login () {
   const [password, setPassword]    = useState("");
   const [acceptTherm, setTherm]    = useState(false);
   const [seePass, setSeePass]      = useState(true);
-  const [errorInputs, setInputs]   = useState(false);
-  const [errorTherm, setMsgtherm]  = useState(false);         
+  const [errorInputs, setInputs]   = useState(false);         
   const dispatch                   = useDispatch();
 
   useEffect(() => {
@@ -45,15 +44,11 @@ export default function Login () {
   function handleLogin (event) {
     event.preventDefault();
 
-    if(!acceptTherm)
-      return (setMsgtherm(true))
-
     if(username === ""  || password === "")
       return (setInputs(true))
 
     dispatch(userLoginAsync(username, md5(password)));
     setInputs(false)
-    setMsgtherm(false)
   };
 
   function handleLanguage(language){

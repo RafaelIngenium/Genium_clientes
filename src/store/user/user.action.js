@@ -81,7 +81,7 @@ export const insert_user_service_login = (user) => {
   return (dispatch) => {
     api.get(`/insertstatusservice?id=${user.id}`)
         .then(response => {
-            if(response.data != ''){
+            if(response.data !== ''){
               if(user.permitsupervisor===true){
                   return api.get(`/servicegroup?id=${user.id}`)
                   .then(response => {
