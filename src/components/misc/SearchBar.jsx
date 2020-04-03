@@ -9,7 +9,7 @@ const SearchBar = ({ extraClasses }) => {
   };
 
   return (
-    <div className={`search ${extraClasses}`}>
+    <div className="search">
       <input
         className="search__input"
         onKeyDown={event => (event.key === "Enter" ? handleSearch() : null)}

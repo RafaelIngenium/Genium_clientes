@@ -1,18 +1,26 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import _ from "lodash";
 import Moment from 'moment'
+import { create_info_client } from "../../../store/clientdetails/clientdetails.action"
 import TimeCounterMinute from "../../../utils/TimeCounterMinute";
 
 var queue = []
 
 const DashboardDetailTabAItem = (item) => {
+  const dispatch           = useDispatch();
+  const history            = useHistory();
   const environmentReducer = useSelector(state => state.queueReducer);
+
+  function changeDetailsClient(queue){
+      history.push("/app/dashboard/details/clients/client");  
+      dispatch(create_info_client(queue)) 
+  }
+
   queue = item.item;
   return (
-    <Link to="/app/dashboard/details/clients/client">
-      <span className="table-card__body__row">
+      <span className="table-card__body__row" onClick={() => changeDetailsClient(item.item)}>
         <div className="table-card__item table-card__item-1">
           <div className="user-info">
             <div className="user-info__photo">
@@ -149,7 +157,6 @@ const DashboardDetailTabAItem = (item) => {
         </div>
         <div className="table-card__item table-card__item-10">00:00:00</div>
       </span>
-    </Link>
   );
 };
 

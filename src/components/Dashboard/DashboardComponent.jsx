@@ -155,7 +155,7 @@ const DashboardComponent = () => {
                 TAREFAS PERFORMADAS
               </div>
               <div className="card-performance__header__date-picker">
-                <SearchBar />
+                  <SearchBar />
               </div>
             </div>
 
@@ -235,7 +235,7 @@ const DashboardComponent = () => {
               infoText="Nível de serviço"
             />
             <CardResume
-              type="info"
+              type="add"
               value={desempenhoRec}
               infoText="Clientes recebidos"
             />
@@ -252,18 +252,18 @@ const DashboardComponent = () => {
                 infoText="Clientes em fila"
               />
           </Link>
-          <CardResume type="info" value={desempenhoAtd} infoText="Clientes atendidos" />
+          <CardResume type="add" value={desempenhoAtd} infoText="Clientes atendidos" />
 
-          <CardResume type="info" value={resultadoTMA[0]} infoText="Tempo médio de atendimento" />
-          <CardResume type="info" value={desempenhoAbdn} infoText="Clientes abandonados" />
-          <CardResume type="info" value={resultadoTMABN[0]} infoText="Tempo médio de abandono" />
-          <CardResume type="info" value={resultadoTMEA[0]} infoText="Tempo médio de espera para atendimento" />
+          <CardResume type="add" value={resultadoTMA[0]} infoText="Tempo médio de atendimento" />
+          <CardResume type="add" value={desempenhoAbdn} infoText="Clientes abandonados" />
+          <CardResume type="add" value={resultadoTMABN[0]} infoText="Tempo médio de abandono" />
+          <CardResume type="add" value={resultadoTMEA[0]} infoText="Tempo médio de espera para atendimento" />
           {/* <CardResume type="add" value="130" infoText="Tempo médio de espera para atendimento" /> */}
           {/* <CardResume type="info" value="130" infoText="Tempo médio de espera para atendimento" /> */}
 
-          <CardResume type="info" value={resultadoMTEA[0]} infoText="Maior tempo de espera para atendimento" />
-          <CardResume type="info" value={desempenhoTransf} infoText="Clientes transferidos" />
-          <CardResume type="info" value="" infoText="Adicionar Parâmetro" />
+          <CardResume type="add" value={resultadoMTEA[0]} infoText="Maior tempo de espera para atendimento" />
+          <CardResume type="add" value={desempenhoTransf} infoText="Clientes transferidos" />
+          <CardResume type="add" value="" infoText="Adicionar Parâmetro" />
         </div>
 
         <div className="dash-topfive-content">

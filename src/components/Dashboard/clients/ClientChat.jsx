@@ -1,64 +1,98 @@
 import React from "react";
+import ClientChatItem from "./ClientChatItem"
+import { useSelector } from "react-redux";
+import Moment from 'moment'
+import { ReactComponent as Emoji } from "../../../build/images/emoji.svg";
+import { ReactComponent as Send } from "../../../build/images/send-minichat.svg";
+import { ReactComponent as Outline } from "../../../build/images/message-outline.svg";
+import { ReactComponent as Attachment } from "../../../build/images/attachment.svg";
+import { ReactComponent as Voz } from "../../../build/images/voz_icon.svg";
+
+var data = ""
+var temp = ""
 
 const ClientChat = () => {
+  const clientdetails              = useSelector(state => state.clientdetailsReducer);
   return (
     <div className="chat-content">
       <div className="chat">
         <div className="mini-chat__body">
           <div className="mini-chat__message-container">
-            <span className="mini-chat__message-container__time">
-              Ontem, 26-09-2019
-            </span>
+            {clientdetails.messages.map(details => (
+              <>
+               
+                {
+                  (() => {
+                          data = Moment(details.data_hora_envio,"DD/MM/YYYY HH:mm").format("DD/MM/YYYY");
+                          var hora = Moment(details.data_hora_envio,"DD/MM/YYYY HH:mm:ss").format("HH:mm");
+                          var now  = Moment().format('DD/MM/YYYY')
 
-            <div className="mini-chat__message-container__buddle mini-chat__message-container__buddle--left">
-              <img
-                className="mini-chat__message-container__buddle__img"
-                src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-                alt="perfil"
-              />
-              <div className="mini-chat__message-container__buddle__text">
-                adipisicing elit. Facere vitaeus tempora nemo adipisci!
-              </div>
-            </div>
 
+                            if(data === now)
+                              data = 'Hoje,'
+                            
+                            // console.log("COMPARARACO", now+'==='+temp)
+                            
+                            // if(now !== temp){
+                            //   temp = now;
+                              return  <span className="mini-chat__message-container__time">{data+' '+hora }</span>
+                            // }
+                  })()
+                }
+                <ClientChatItem details={details} position={details.agente === true ? "right":"left"} pathfile={clientdetails.pathfile} />
+              </>
+              ))}
+            
             {/* <!-- <span className="mini-chat__message-container__time">Hoje, 05-06-2019</span> --> */}
-            <div className="mini-chat__message-container__buddle mini-chat__message-container__buddle--right">
-              <img
-                className="mini-chat__message-container__img-bot"
-                src="https://media.sproutsocial.com/uploads/2016/08/Facebook-Messenger-Bot-01.png"
-                alt="perfil"
-              />
-              <div className="mini-chat__message-container__buddle__text">
-                adipisicing elit. Facere vitaeus tempora nemo adipisci!
-              </div>
-            </div>
 
             <div className="mini-chat__digitando">
-              Usuario está digitando<span>...</span>
+              {/* Usuario está digitando */}
+              {/* <span>...</span> */}
             </div>
           </div>
         </div>
 
-        <div className="mini-chat__footer">
-          <div className="mini-chat__footer__input-content">
-            <input
-              className="mini-chat__footer__input-content__input"
-              type="text"
-              placeholder="Escreva sua mensagem"
-            />
-            <button className="mini-chat__footer__input-content__sent">
-              {/* <?php include '../build/images/send-minichat.svg' ?> */}
-            </button>
+        <div class="mini-chat__footer">
+            <div class="mini-chat__footer__input-content">
+                <button class="mini-chat__footer__input-content__emoji tippy-context-menu" data-template="emoji">
+                    <Emoji />
+                </button>
+                <input class="mini-chat__footer__input-content__input" type='text' placeholder="Escreva sua mensagem" />
+                <button class="mini-chat__footer__input-content__sent">
+                    <Send />
+                </button>
+            </div>
+
+            <div class="wrapper-buttons active">
+
+                <button class="mini-chat__footer__btns tippy-context-menu" data-template="premade-msg">
+                    <Outline />
+                </button>
+
+
+
+                <button class="mini-chat__footer__btns attachment">
+                    <Attachment />
+                </button>
+
+
+                <button class="mini-chat__footer__btns">
+                    <Voz />
+                </button>
+
+            </div>
+
+            <div class="active-voice">
+                <a href="#" class="cancel"><i class="material-icons">close</i></a>
+
+                <div class="active-chats__timer active-chats__timer--active-voice">
+                    <span class="active-chats__timer-icon active-chats__timer--active-voice-icon alta">•</span>00:15:27
+                </div>
+
+                <a href="#" class="done"><i class="material-icons">done</i></a>
+
+            </div>
           </div>
-
-          <button className="mini-chat__footer__btns">
-            {/* <?php include '../build/images/message-outline.svg' ?> */}
-          </button>
-
-          <button className="mini-chat__footer__btns">
-            {/* <?php include '../build/images/attachment.svg' ?> */}
-          </button>
-        </div>
       </div>
     </div>
   );

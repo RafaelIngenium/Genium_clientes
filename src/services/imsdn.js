@@ -177,13 +177,13 @@ const setupSocket = (
               })	 
             }
               
-            if((novadata[QUEUEID+1]=='NANS' && novadata[CQUEUE+1]=='0')||(novadata[QUEUEID+1]=='ADD' && novadata[CQUEUE+1]=='0')){
+            if((novadata[TP+1]=='NANS' && novadata[CQUEUE+1]=='0')||(novadata[QUEUEID+1]=='ADD' && novadata[CQUEUE+1]=='0')){
               dispatch(editListCallQueue(novadata[7],novadata[3],parseInt(novadata[23]),novadata[11],novadata[9],novadata[19],novadata[15],novadata[17],parseInt(novadata[21]), parseInt(novadata[5]), parseInt(novadata[25]), customerwait, 0, novadata[PROFILEPHOTO+1], novadata[REASON+1]))
               console.log("editListCallQueue")
-            }else if(novadata[QUEUEID+1]=='CBACK' && novadata[23]==''){
+            }else if(novadata[TP+1]=='CBACK' && novadata[23]==''){
               console.log("returnListCallQueue")
               dispatch(returnListCallQueue(novadata[QUEUEID+1],novadata[3],'2', parseInt(novadata[19]),novadata[17],novadata[PROFILEPHOTO+1]))
-            }else if(novadata[QUEUEID+1]=='NANS' && novadata[15]=='0'){
+            }else if(novadata[TP+1]=='NANS' && novadata[15]=='0'){
              dispatch(returnListCallQueueObs(novadata[QUEUEID+1],novadata[3],'0',novadata[REASON+1]))
             }else if(novadata[TP+1]=='RM'){
               console.log("deleteListCallQueue")

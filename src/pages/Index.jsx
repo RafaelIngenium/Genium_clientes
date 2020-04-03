@@ -11,7 +11,6 @@ const Index = props => {
   if(props.match.path === "/app")
       return (
               <Switch>
-                {/* <Route exact path={"/"} component={Dashboard} /> */}
                 <Route
                   exact
                   path={`${props.match.path}/dashboard`}

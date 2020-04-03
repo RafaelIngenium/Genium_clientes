@@ -16,8 +16,11 @@ const SubPageHeader = ({
   const location = useLocation();
   const history = useHistory();
 
+  console.log("EXTRA CLASSES", extraClasses)
+
   return (
-    <div className="main__header flex__row">
+    <React.Fragment>
+    {/* // <div className="main__header flex__row"> */}
       <div className="flex__cell flex__cell--9">
         <div className="main__header__title">
           {location.pathname.split("/")[5] === "client" && (
@@ -53,7 +56,8 @@ const SubPageHeader = ({
           </div>
         </div>
       )}
-    </div>
+    {/* // </div> */}
+    </React.Fragment>
   );
 };
 

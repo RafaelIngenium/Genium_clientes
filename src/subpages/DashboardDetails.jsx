@@ -36,7 +36,7 @@ const DashboardDetails = () => {
                                 </div>
                                 <div className="flex__row">
                                   <div className="flex__cell flex__cell--12">
-                                    <div className="path">
+                                    <div className={location.pathname.split("/")[5] === "client" ? "path client-details-path":"path"}>
                                       <span className="path__item">
                                         <div className="path__item__text">
                                           <Link to={"/app/dashboard"}>Dashboard </Link>
