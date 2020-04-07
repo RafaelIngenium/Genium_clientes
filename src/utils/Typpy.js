@@ -16,3 +16,17 @@ PopOver.defaultProps = {
   interactive: true,
   placement: "right"
 };
+
+export const PopUver = ({ children, ...otherProps }) => (
+  <Tippy {...otherProps}>{children}</Tippy>
+);
+
+PopUver.defaultProps = {
+  arrow: roundArrow,
+  allowHTML: true,
+  duration: 250,
+  theme: "ingweb",
+  trigger: "click",
+  interactive: true,
+  placement: "top"
+};

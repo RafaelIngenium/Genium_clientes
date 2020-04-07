@@ -7,12 +7,63 @@ import { ReactComponent as Send } from "../../../build/images/send-minichat.svg"
 import { ReactComponent as Outline } from "../../../build/images/message-outline.svg";
 import { ReactComponent as Attachment } from "../../../build/images/attachment.svg";
 import { ReactComponent as Voz } from "../../../build/images/voz_icon.svg";
+import { PopUver } from "../../../utils/Typpy";
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
 
 var data = ""
 var temp = ""
 
 const ClientChat = () => {
   const clientdetails              = useSelector(state => state.clientdetailsReducer);
+
+  const renderPopoverMessage = (e) => (
+    <div class="context-menu emoji-container" id="emoji-container">
+    </div>
+  );
+
+  function addEmoji(emoji){
+    console.log("EMOJI", emoji.native)
+    let string = document.getElementById("chat-message").innerText
+    document.getElementById("chat-message").innerText = string+emoji.native;
+  }
+  
+  const renderPopoverEmoji = (e) => (
+    <div class="context-menu emoji-container" id="emoji-container">
+      <div class="context-menu__list">
+         <Picker 
+         onSelect={addEmoji}
+         set='google'
+         showPreview={false}
+         showSkinTones={false}
+         skin='1'
+         autoFocus='true'
+         i18n={{search: 'Buscar um emoji',
+         clear: 'Limpar', // Accessible label on "clear" button
+         notfound: 'Nenhum emoji encontrado',
+         skintext: 'Default Skin Tone',
+         skintones: {
+          1: 'Light Skin Tone',
+        },
+         categories: {
+           search: 'Resultados da busca',
+           recent: 'Recentes',
+           smileys: 'Emojis e Pessoas',
+           people: 'Emojis e Pessoas',
+           nature: 'Animais e natureza',
+           foods: 'Comida e Bebida',
+           activity: 'Atividades',
+           places: 'Viagens & Locais',
+           objects: 'Objetos',
+           symbols: 'Símbolos',
+           flags: 'Bandeiras',
+           custom: 'Custom',
+         }}}
+         />
+      </div>
+    </div>
+  );
+  
   return (
     <div className="chat-content">
       <div className="chat">
@@ -54,10 +105,12 @@ const ClientChat = () => {
 
         <div class="mini-chat__footer">
             <div class="mini-chat__footer__input-content">
-                <button class="mini-chat__footer__input-content__emoji tippy-context-menu" data-template="emoji">
-                    <Emoji />
-                </button>
-                <input class="mini-chat__footer__input-content__input" type='text' placeholder="Escreva sua mensagem" />
+                <PopUver trigger="click" interactive={true} content={renderPopoverEmoji(this)}>
+                  <button class="mini-chat__footer__input-content__emoji tippy-context-menu" data-template="emoji">
+                      <Emoji />
+                  </button>
+                </PopUver>
+                <input class="mini-chat__footer__input-content__input" type='text' id="chat-message" placeholder="Escreva sua mensagem" />
                 <button class="mini-chat__footer__input-content__sent">
                     <Send />
                 </button>
