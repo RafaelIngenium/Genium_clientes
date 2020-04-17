@@ -57,7 +57,7 @@ const ClientChatItem = ({details,position,pathfile}) => {
           style={{marginRight: '10px', marginLeft: '10px'}}
         />
         <div class="wrapper-buddle">
-          <div className="mini-chat__message-container__buddle__text" style={{display: 'block'}}>
+          <div className="mini-chat__message-container__buddle__text">
             {(() => {
                   if(details.mimetypeid == "1"){
                     var message = createJSON(details.messagem)

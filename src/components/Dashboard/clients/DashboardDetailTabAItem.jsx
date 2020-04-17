@@ -19,6 +19,7 @@ const DashboardDetailTabAItem = (item) => {
   }
 
   queue = item.item;
+  
   return (
       <span className="table-card__body__row" onClick={() => changeDetailsClient(item.item)}>
         <div className="table-card__item table-card__item-1">

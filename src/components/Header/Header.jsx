@@ -19,7 +19,7 @@ const Header = ({ userLogout }) => {
   // renderPopOver;
   const renderPopOver = () => {
     return (
-      <div className="list-drop list-drop--primary">
+      <div className="list-drop list-drop--primary active">
         <div className="header__user__name">{displayname}</div>
         <div className="list-drop__item">
           <Moon />

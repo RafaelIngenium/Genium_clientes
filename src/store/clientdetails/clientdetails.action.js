@@ -51,3 +51,4 @@ export const create_info_client_action = (todos) => ({ type: ClienteDetailsActio
 export const create_info_last_contacts = (todos) => ({ type: ClienteDetailsActionTypes.ADD_LAST_CONTACTS, todos })
 export const create_info_last_contact  = (todos) => ({ type: ClienteDetailsActionTypes.ADD_LAST_CONTACT, todos })
 export const create_messages_queue     = (todos) => ({ type: ClienteDetailsActionTypes.CREATE_MESSAGES, todos })
+export const add_messages_queue        = (todos) => ({ type: ClienteDetailsActionTypes.ADD_MESSAGES, todos })

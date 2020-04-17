@@ -14,7 +14,7 @@ const SubPageHeader = ({
   withButton
 }) => {
   const location = useLocation();
-  const history = useHistory();
+  const history  = useHistory();
 
   console.log("EXTRA CLASSES", extraClasses)
 

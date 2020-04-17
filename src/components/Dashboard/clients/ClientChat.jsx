@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ClientChatItem from "./ClientChatItem"
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Moment from 'moment'
 import { ReactComponent as Emoji } from "../../../build/images/emoji.svg";
 import { ReactComponent as Send } from "../../../build/images/send-minichat.svg";
@@ -10,24 +10,75 @@ import { ReactComponent as Voz } from "../../../build/images/voz_icon.svg";
 import { PopUver } from "../../../utils/Typpy";
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
+import { InviteMessages } from '../../../services/imsdn'
+import { add_messages_queue } from "../../../store/clientdetails/clientdetails.action"
 
 var data = ""
 var temp = ""
 
 const ClientChat = () => {
   const clientdetails              = useSelector(state => state.clientdetailsReducer);
+  const user                       = useSelector(state => state.userReducer);
+  const quickanswers               = useSelector(state => state.quickanswerReducer);
+  const [textInput, setText]       = useState("");
+  const [scroller, setScroller]    = useState("");
+  const dispatch                   = useDispatch();
+  const containers                 = useRef();
 
-  const renderPopoverMessage = (e) => (
-    <div class="context-menu emoji-container" id="emoji-container">
+
+  const renderPopoverMessage = (e,todos) => (
+    <div class="context-menu" id="premade-msg">
+        <div class="context-menu__list premade-msg">
+
+            <p class="premade-msg__title">Respostas rápidas</p>
+            <div class="premade-msg__content">
+                <ul class="premade-msg__list">
+                    {todos.map(todo => (
+                      <li class="premade-msg__item" onClick={() => addMessage(todo.qck_asw_answer)}>
+                        {todo.qck_asw_keyword}
+                      </li>
+                    ))}
+                </ul>
+                <div class="premade-msg__input-wrapper">
+                    <input type="text" class="premade-msg__search-input" placeholder="Pesquise uma resposta..." />
+                    <span class="premade-msg__input-icon">
+                        <i class="material-icons">search</i>
+                    </span>
+                </div>
+            </div>
+
+        </div>
     </div>
   );
 
-  function addEmoji(emoji){
-    console.log("EMOJI", emoji.native)
-    let string = document.getElementById("chat-message").innerText
-    document.getElementById("chat-message").innerText = string+emoji.native;
+  const addEmoji = (emoji) => { 
+    setText(textInput+emoji.native)
   }
-  
+
+  const addMessage = (texto) => { 
+    setText(textInput+texto)
+  }
+
+  const sendMessage = () => { 
+    setText('')
+    dispatch(add_messages_queue(textInput))
+  }
+
+  useEffect(() => {
+    if (scroller !== containers.current.scrollHeight) {
+      containers.current.scrollTop = containers.current.scrollHeight;
+      setScroller(containers.current.scrollHeight);
+    }
+  })
+
+  const HandleKeyPress = (event) => {
+    if (event.key === "Enter" && event.shiftKey === false) {
+      dispatch(add_messages_queue(textInput))
+      InviteMessages(user.user,clientdetails,textInput)
+      setText('')
+    }
+  }
+
   const renderPopoverEmoji = (e) => (
     <div class="context-menu emoji-container" id="emoji-container">
       <div class="context-menu__list">
@@ -63,12 +114,13 @@ const ClientChat = () => {
       </div>
     </div>
   );
-  
+ 
+
   return (
     <div className="chat-content">
       <div className="chat">
-        <div className="mini-chat__body">
-          <div className="mini-chat__message-container">
+        <div className="mini-chat__body" ref={containers}>
+          <div className="mini-chat__message-container" style={{maxHeight: '400px'}} >
             {clientdetails.messages.map(details => (
               <>
                
@@ -81,13 +133,12 @@ const ClientChat = () => {
 
                             if(data === now)
                               data = 'Hoje,'
+                          
                             
-                            // console.log("COMPARARACO", now+'==='+temp)
-                            
-                            // if(now !== temp){
-                            //   temp = now;
+                            if(hora !== temp){
+                              temp = hora;
                               return  <span className="mini-chat__message-container__time">{data+' '+hora }</span>
-                            // }
+                            }
                   })()
                 }
                 <ClientChatItem details={details} position={details.agente === true ? "right":"left"} pathfile={clientdetails.pathfile} />
@@ -102,7 +153,6 @@ const ClientChat = () => {
             </div>
           </div>
         </div>
-
         <div class="mini-chat__footer">
             <div class="mini-chat__footer__input-content">
                 <PopUver trigger="click" interactive={true} content={renderPopoverEmoji(this)}>
@@ -110,19 +160,18 @@ const ClientChat = () => {
                       <Emoji />
                   </button>
                 </PopUver>
-                <input class="mini-chat__footer__input-content__input" type='text' id="chat-message" placeholder="Escreva sua mensagem" />
-                <button class="mini-chat__footer__input-content__sent">
+                <input class="mini-chat__footer__input-content__input" onChange={event => setText(event.target.value)} type='text' value={textInput} onKeyUp={event => HandleKeyPress(event)} id="chat-message" name="chat-message" placeholder="Escreva sua mensagem" />
+                <button class="mini-chat__footer__input-content__sent" onClick={sendMessage}>
                     <Send />
                 </button>
             </div>
 
             <div class="wrapper-buttons active">
-
-                <button class="mini-chat__footer__btns tippy-context-menu" data-template="premade-msg">
-                    <Outline />
-                </button>
-
-
+                 <PopUver trigger="click" interactive={true} content={renderPopoverMessage(this, quickanswers)}>
+                    <button class="mini-chat__footer__btns tippy-context-menu" data-template="premade-msg">
+                        <Outline />
+                    </button>
+                 </PopUver>
 
                 <button class="mini-chat__footer__btns attachment">
                     <Attachment />

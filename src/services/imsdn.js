@@ -21,6 +21,16 @@ var ramaluser = '';
 var qtde_fila = "";
 var customerwait = 0
 
+function makeid(length) {
+  var text = "";
+  var possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+}
+
 export const sendIPSocket = (imsdnpri, imsdnsec) => {
   let urls = [];
 
@@ -40,6 +50,20 @@ export const sendIPSocket = (imsdnpri, imsdnsec) => {
   });
   ipcurrent = iplocal;
   return { urls, urlIndex, urlProvider, ipcurrent, socket };
+};
+
+export const InviteMessages = (infousers, contactid, msg) => {
+  InviteMessage(infousers, contactid, msg, makeid);
+  return true;
+}
+
+function InviteMessage (infousers,contactid,msg){
+  msg = escape(msg)
+  msg = msg.replace(/%u/gi, "\\u");
+  msg = unescape(msg)
+  // console.log(msg)
+  //console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\n\r\n");
+  socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n");
 };
 
 export const RegisterReqWebSocket = (dispatch, user, strSubMonit,strGrp) => {
@@ -79,6 +103,7 @@ const setupSocket = (
       var valorDiferenca = parseInt(Math.abs(Math.round(environmentReducer.diff_time)));
       let datareceived = "Received: " + event.data;
       const novadata = datareceived.split("\r\n");
+      console.log(novadata)
       switch (novadata[0]) {
         case "Received: USRMSGLOG":
           break;

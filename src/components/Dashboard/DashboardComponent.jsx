@@ -8,16 +8,16 @@ import ChartComponent from "../misc/ChartComponent";
 import TimeFormat from "hh-mm-ss"
 
 const DashboardComponent = () => {
-  const location = useLocation();
-  const servicegroupReducer     = useSelector(state => state.servicegroupReducer);
-  const supervisiongroupReducer = useSelector(state => state.supervisiongroupReducer);
-  const queueReducer            = useSelector(state => state.queueReducer);
-  const agents                  = useSelector(state => state.agentReducer);
-  const flows                   = useSelector(state => state.topfiveflowReducer);
+  const location                        = useLocation();
+  const servicegroupReducer             = useSelector(state => state.servicegroupReducer);
+  const supervisiongroupReducer         = useSelector(state => state.supervisiongroupReducer);
+  const queueReducer                    = useSelector(state => state.queueReducer);
+  const agents                          = useSelector(state => state.agentReducer);
+  const flows                           = useSelector(state => state.topfiveflowReducer);
   
   useEffect(() => {}, []);
 
-  const [graphType, setGraphType] = useState("line");
+  const [graphType, setGraphType]       = useState("line");
   const [graphOptions, setGraphOptions] = useState({
     chart: {
       shadow: {
