@@ -58,11 +58,12 @@ export const InviteMessages = (infousers, contactid, msg) => {
 }
 
 function InviteMessage (infousers,contactid,msg){
+  msg = msg.replace(/\n|\r\n/gi, "¿");
   msg = escape(msg)
   msg = msg.replace(/%u/gi, "\\u");
   msg = unescape(msg)
-  // console.log(msg)
-  //console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\n\r\n");
+  console.log(msg)
+  console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\n\r\n");
   socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n");
 };
 

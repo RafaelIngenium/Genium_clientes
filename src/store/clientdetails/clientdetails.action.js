@@ -6,7 +6,11 @@ export const create_info_client = (queue) => {
       dispatch(create_info_client_action(queue))
       dispatch(lastcontactclient(queue.caller))
       dispatch(lastcontactsclient(queue.cdrid,queue.caller))
-      dispatch(carregarmessages(queue.cdrid))
+      console.log("QUEUEUEUE", queue.status)
+      if(queue.status !== '1')
+        dispatch(carregarmessagescallback(queue.queueid))
+      else
+        dispatch(carregarmessages(queue.cdrid))
   };
 }
 
@@ -37,6 +41,18 @@ export const lastcontactsclient = (cdr,number) => {
 export const carregarmessages = (cdr) => {
     return (dispatch) => {
         return api.get(`/loadingmessages?cdr=${cdr}`)
+        .then(response => {
+            dispatch(create_messages_queue(response.data))
+        })
+        .catch(error => {
+            console.log(error)
+        });
+    };
+  }
+
+  export const carregarmessagescallback = (cdr) => {
+    return (dispatch) => {
+        return api.get(`/loadingmessagescallback?cdr=${cdr}`)
         .then(response => {
             dispatch(create_messages_queue(response.data))
         })

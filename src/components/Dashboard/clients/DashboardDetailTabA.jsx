@@ -23,7 +23,7 @@ const DashboardDetailTabA = () => {
       </div>
 
       <div className="table-card__body">
-        {queueReducer.filter(item => item.status === '1' || item.status === 1).map(item => (
+        {queueReducer.map(item => (
           <DashboardDetailTabAItem key={item} item={item}/>
         ))}
       </div>

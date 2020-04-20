@@ -439,7 +439,7 @@ export default function Constructor () {
                 <div class={modeflow === 'simple' ? "simple-mode active":"simple-mode"}>
                 <div class="constructor-simple">
                         <div class="side-left">
-                            <div class="container-actions left">
+                            <div class="container-actions left active">
 
 
                                 <div class="wrapper-actions">

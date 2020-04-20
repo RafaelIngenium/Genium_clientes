@@ -61,7 +61,11 @@ const ClientChatItem = ({details,position,pathfile}) => {
             {(() => {
                   if(details.mimetypeid == "1"){
                     var message = createJSON(details.messagem)
-                    // message.replace
+                    // message = message.replace(/¿/gi, "\n");
+                    // message = message.replace(/¿/gi, "\r\n");
+                    // message = message.replace(/↵/gi, "\r\n");
+                    // message = message.replace(/↵/gi, "\n");
+                    console.log(message)
                     return message;
                   }else if(details.mimetypeid == "2"){
                       if (isJson(details.messagem) === true){

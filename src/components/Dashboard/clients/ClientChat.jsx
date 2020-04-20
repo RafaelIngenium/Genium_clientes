@@ -24,7 +24,9 @@ const ClientChat = () => {
   const [scroller, setScroller]    = useState("");
   const dispatch                   = useDispatch();
   const containers                 = useRef();
-
+  const inputEl                    = useRef(null);
+  const simultClick                = useRef(null);
+  const inputFile                  = useRef(null);
 
   const renderPopoverMessage = (e,todos) => (
     <div class="context-menu" id="premade-msg">
@@ -55,13 +57,21 @@ const ClientChat = () => {
     setText(textInput+emoji.native)
   }
 
+  const clickFile = () => { 
+    inputFile.current.click();
+  }
+
   const addMessage = (texto) => { 
-    setText(textInput+texto)
+    setText(textInput+texto);
+    simultClick.current.click();
+    inputEl.current.focus();
   }
 
   const sendMessage = () => { 
     setText('')
     dispatch(add_messages_queue(textInput))
+    InviteMessages(user.user,clientdetails,textInput)
+    setText('')
   }
 
   useEffect(() => {
@@ -160,7 +170,7 @@ const ClientChat = () => {
                       <Emoji />
                   </button>
                 </PopUver>
-                <input class="mini-chat__footer__input-content__input" onChange={event => setText(event.target.value)} type='text' value={textInput} onKeyUp={event => HandleKeyPress(event)} id="chat-message" name="chat-message" placeholder="Escreva sua mensagem" />
+                <input class="mini-chat__footer__input-content__input" ref={inputEl} onChange={event => setText(event.target.value)} type='text' value={textInput} onKeyUp={event => HandleKeyPress(event)} id="chat-message" name="chat-message" placeholder="Escreva sua mensagem" />
                 <button class="mini-chat__footer__input-content__sent" onClick={sendMessage}>
                     <Send />
                 </button>
@@ -168,13 +178,20 @@ const ClientChat = () => {
 
             <div class="wrapper-buttons active">
                  <PopUver trigger="click" interactive={true} content={renderPopoverMessage(this, quickanswers)}>
-                    <button class="mini-chat__footer__btns tippy-context-menu" data-template="premade-msg">
+                    <button ref={simultClick} class="mini-chat__footer__btns tippy-context-menu" data-template="premade-msg">
                         <Outline />
                     </button>
                  </PopUver>
 
-                <button class="mini-chat__footer__btns attachment">
+                <button class="mini-chat__footer__btns attachment" onClick={clickFile}>
                     <Attachment />
+                    <input
+                        style={{ display: "none" }}
+                        type="file"
+                        name="upload"
+                        ref={inputFile}
+                        id="file-input"
+                      />
                 </button>
 
 
