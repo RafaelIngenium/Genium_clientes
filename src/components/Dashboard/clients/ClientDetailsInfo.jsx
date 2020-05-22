@@ -3,10 +3,16 @@ import MediaItem from "../../misc/MediaItem";
 import { useSelector } from "react-redux";
 import TimeCounterMinute from "../../../utils/TimeCounterMinute";
 import Moment from 'moment'
+import { RequestCallParkSocket } from '../../../services/imsdn'
 
 const ClientDetailsInfo = () => {
   const queue              = useSelector(state => state.clientdetailsReducer);
   const environmentReducer = useSelector(state => state.queueReducer);
+  const infousers          = useSelector(state => state.userReducer);
+
+  const answerCall = (texto) => { 
+    RequestCallParkSocket(infousers.user,'1',queue.cdrid,queue.mediaid)
+  }
 
   return (
     <div className="client-details__info">
@@ -30,10 +36,23 @@ const ClientDetailsInfo = () => {
             </div>
           </div>
         </a>
-
-        <button className="btn-outlined btn-outlined--primary">
-          Mover para fila
-        </button>
+        {
+          (() => {
+                    if(queue.answer === true){
+                      return (
+                              <button className="btn-outlined btn-outlined--primary">
+                                 Mover para fila
+                             </button>
+                            );
+                    }else{
+                      return (
+                              <button className="btn-outlined btn-outlined--primary" onClick={answerCall}>
+                                Atender
+                              </button>
+                            );
+                    }
+          })()
+        }
       </div>
 
       <div className="client-details__info__resume">

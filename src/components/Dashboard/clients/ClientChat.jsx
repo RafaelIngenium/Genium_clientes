@@ -111,8 +111,6 @@ const ClientChat = () => {
   }
 
   useEffect(() => {
-    console.log(scroller)
-    console.log(containers.current.scrollHeight)
     if (scroller !== containers.current.scrollHeight) {
       containers.current.scrollTop = containers.current.scrollHeight;
       setScroller(containers.current.scrollHeight);

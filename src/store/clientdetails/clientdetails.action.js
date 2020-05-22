@@ -102,9 +102,9 @@ export const carregarmessages = (cdr) => {
     };
   }
 
-
 export const create_info_client_action = (todos) => ({ type: ClienteDetailsActionTypes.ADD_INFO_CLIENT, todos })
 export const create_info_last_contacts = (todos) => ({ type: ClienteDetailsActionTypes.ADD_LAST_CONTACTS, todos })
 export const create_info_last_contact  = (todos) => ({ type: ClienteDetailsActionTypes.ADD_LAST_CONTACT, todos })
 export const create_messages_queue     = (todos) => ({ type: ClienteDetailsActionTypes.CREATE_MESSAGES, todos })
+export const anwsers_accept            = (todos) => ({ type: ClienteDetailsActionTypes.ACCEPT_ANWSER, todos })
 export const add_messages_queue        = (makeid,filesize,messagem,agente,telefone,cdrid,data,hora,mediaid,username,mimetypeid,caption) => ({ type: ClienteDetailsActionTypes.ADD_MESSAGES, makeid,filesize,messagem,agente,telefone,cdrid,data,hora,mediaid,username,mimetypeid,caption })

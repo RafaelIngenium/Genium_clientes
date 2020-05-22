@@ -13,6 +13,20 @@ export const get_info_queue = (iduser) => {
     };
 }
 
+export const InsertAnswerACK = (idcdr,telefone,userid, servicein, descricao) => {
+    if(servicein != 0){
+      return api.get(`/insertserviceattendant?idcdr=${idcdr}&iduser=${userid}&telefone=${telefone}&serviceinid=${servicein}&descricao=${descricao}`)
+        .then(response => {
+          return response.data.id
+      })
+    }else{
+      return api.get(`/insertserviceattendant?idcdr=${idcdr}&iduser=${userid}&telefone=${telefone}&descricao=${descricao}`)
+        .then(response => {
+          return response.data.id
+      })
+    }
+  }
+
 export const create_info_queue = (queue) => ({ type: QueueActionTypes.ADD_INFO_QUEUE, queue })
 export const addListCallQueue = (tipo, callqueueid, serviceinid, chamado, chamador, datahora,contrech, status, mediaid, cdrid, scriptid, callback_count, customerwait, contactname, pathfile) => ({ type: QueueActionTypes.ADD_QUEUE, callqueueid, serviceinid, chamado, chamador, datahora,  contrech, status, mediaid, cdrid , scriptid, callback_count, customerwait, contactname, pathfile})
 export const deleteListCallQueue = (callqueueid) => ({ type: QueueActionTypes.DELETE_QUEUE,	callqueueid})

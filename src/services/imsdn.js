@@ -1,8 +1,9 @@
 import ReconnectingWebSocket from "reconnecting-websocket";
 import { connection_platform } from "./api";
 import { insertInfoServiceGroup } from "../store/servicegroup/servicegroup.action"
-import { addListCallQueue,editListCallQueue,returnListCallQueue,returnListCallQueueObs,deleteListCallQueue } from "../store/queue/queue.action"
+import { addListCallQueue,editListCallQueue,returnListCallQueue,returnListCallQueueObs,deleteListCallQueue,InsertAnswerACK } from "../store/queue/queue.action"
 import { refresh_agent } from "../store/agent/agent.action"
+import { anwsers_accept,add_messages_queue } from "../store/clientdetails/clientdetails.action"
 import Moment from 'moment'
 
 const iplocal = connection_platform.ip_intern;
@@ -64,6 +65,9 @@ function InviteMessage (infousers,contactid,msg){
   msg = unescape(msg)
   // console.log(msg)
   // console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\n\r\n");
+  if(contactid.answer == true)
+  socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\n\r\n");
+  else
   socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n");
 };
 
@@ -89,6 +93,16 @@ function RegisterReqSocket (user,strSubMonit,strGrp){
   if(user.permitsupervisor)
     socket.send("MSS_GETINFO\r\n"+user.id+"\r\SRVIN\r\n-1\r\n\r\n");
 
+};
+
+export const RequestCallParkSocket = (infousers,scriptid,cdrid,mediaid) => {
+  RequestCallPark(infousers,scriptid,cdrid,mediaid);
+}
+
+function RequestCallPark (infouser, scriptid, cdrid, mediaid){
+  // console.log(infouser, scriptid, cdrid, mediaid)
+  // console.log("CALLPARK\r\n"+infouser.id+"\r\nSCRIPT\r\n"+scriptid+"\r\nCDRID\r\n"+cdrid+"\r\nMEDIA\r\n"+mediaid+"\r\nUSERNAME\r\n"+infouser.username+"\r\nDISPLAYNAME\r\n"+infouser.displayname+"\r\nEXTEN\r\n"+infouser.ramal+"\r\n\r\n")
+  socket.send("CALLPARK\r\n"+infouser.id+"\r\nSCRIPT\r\n"+scriptid+"\r\nCDRID\r\n"+cdrid+"\r\nMEDIA\r\n"+mediaid+"\r\nUSERNAME\r\n"+infouser.username+"\r\nDISPLAYNAME\r\n"+infouser.displayname+"\r\nEXTEN\r\n"+infouser.ramal+"\r\n\r\n");
 };
 
 export const SendFile = (contactid, infousers, msg, caption, makeid) => {
@@ -161,7 +175,11 @@ function UrlFileSend (reducerUser,contactid,msg, caption,makeid){
   
   let createjson = '{"CDR":'+contactid.cdrid+',"URL":"'+msg+'", "THUMBNAIL":"", "CAPTION":"'+caption+'","MIMETYPE":"'+mimetype+'"}';
   // console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n")
-  socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n");
+  
+  if(contactid.answer === true)
+     socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n");
+  else
+    socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\n\r\n");
 };
 
 const setupSocket = (
@@ -172,7 +190,7 @@ const setupSocket = (
   socket.onopen = event => {
     socket.onmessage = event => {
       
-      const {queuepermissionReducer, environmentReducer} = getState();
+      const {queuepermissionReducer, environmentReducer, userReducer, clientdetailsReducer} = getState();
 
       var valorDiferenca = parseInt(Math.abs(Math.round(environmentReducer.diff_time)));
       let datareceived = "Received: " + event.data;
@@ -192,7 +210,6 @@ const setupSocket = (
         case "Received: USRMSGLOGREAD":
           break;
         case "Received: INFO":
-            //console.log(novadata)
             let CDRID         = novadata.indexOf("CDRID");
             let PSDCOUNT      = novadata.indexOf("PSDCOUNT");
             let PSDTMA        = novadata.indexOf("PSDTMA");
@@ -214,8 +231,6 @@ const setupSocket = (
             let LABEL         = novadata.indexOf("DISPLAYNAME");
             let RAMAL         = novadata.indexOf("EXTEN");
             let MODULE        = novadata.indexOf("MOD");
-
-            //dispatch(refreshGroups(parseInt(novadata[IDGRUPO+1]), novadata[DESCGRUPO+1]));
 
             if(novadata[13] == 'LV'){
               let iduser = parseInt(novadata[1]);		
@@ -241,6 +256,31 @@ const setupSocket = (
             }
           break;
         case "Received: ANSWEBCHAT":
+          let DIRECTION        = novadata.indexOf("DIRECTION");
+          let REATD            = novadata.indexOf("REATD");
+          let CONTACTID        = novadata.indexOf("CONTACTID");
+          let CONTACTNAME      = novadata.indexOf("CONTACTNAME");
+          let SRVINA           = novadata.indexOf("SRVIN");
+
+          let telefone         = novadata[CONTACTNAME+1].split("~¿");
+					let telefonefilt     = telefone[0].split(": ");
+          
+          if(parseInt(novadata[DIRECTION+1]) === 1 && novadata[REATD+1] === '0'){
+              let received = InsertAnswerACK(parseInt(novadata[CONTACTID+1]), telefonefilt[1],userReducer.user.id, parseInt(novadata[SRVINA+1]),'Entrada')
+              received.then(function(result){
+                  dispatch(anwsers_accept(true))
+                  socket.send("ANSWEBCHATACK\r\n"+userReducer.user.id+"\r\nCONTACTID\r\n"+novadata[CONTACTID+1]+"\r\nTo\r\n"+novadata[1]+"\r\nSRV\r\n1\r\nSRVIN\r\n"+novadata[SRVINA+1]+"\r\nATDID\r\n"+result+"\r\n\r\n");							
+              });
+          }
+          break;
+        case 'Received: WSIMSGLOG':
+          let MSG             = novadata.indexOf("MSG");
+          let TOCLIENT        = novadata.indexOf("TOCLIENT");
+
+          let data = Moment().format('DD/MM/YYYY HH:mm');
+          let hora = Moment().format('HH:mm');
+
+          dispatch(add_messages_queue(makeid(32),null,novadata[MSG+1],false,'0',novadata[TOCLIENT+1],data,hora,clientdetailsReducer.mediaid,'Cli',1,''))
           break;
         case "Received: WSIMSGLOGREAD":
           break;
@@ -256,9 +296,7 @@ const setupSocket = (
           let TP		          = novadata.indexOf("TP");
           let QUEUEID		      = novadata.indexOf("QUEUEID");
           let CQUEUE	        = novadata.indexOf("CQUEUE");
-          console.log(novadata)
           if(qtde_fila>0){
-            console.log("queuepermissionReducer",queuepermissionReducer)
             if(queuepermissionReducer){
               //console.log("PSSOU")
               queuepermissionReducer.map(queue =>{

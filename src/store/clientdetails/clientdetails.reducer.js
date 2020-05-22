@@ -5,7 +5,7 @@ export default function clientdetails(state = [], action) {
     switch (action.type) {
       case ClienteDetailsActionTypes.ADD_INFO_CLIENT:
         var todos = action.todos
-            todos = {...todos, lastcontacts: [], lastcontact: "", messages: []}
+            todos = {...todos, lastcontacts: [], lastcontact: "", messages: [], answer: false}
         return todos
       case ClienteDetailsActionTypes.ADD_LAST_CONTACT:
         return {...state, lastcontact: action.todos}
@@ -13,6 +13,8 @@ export default function clientdetails(state = [], action) {
         return {...state, lastcontacts: action.todos}
       case ClienteDetailsActionTypes.CREATE_MESSAGES:
         return {...state, messages: action.todos}
+      case ClienteDetailsActionTypes.ACCEPT_ANWSER:
+        return {...state, answer: action.todos}
       case ClienteDetailsActionTypes.ADD_MESSAGES:
         var array = state.messages
         array.push({agente: action.agente,
