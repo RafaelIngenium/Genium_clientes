@@ -261,7 +261,7 @@ const setupSocket = (
           let CONTACTID        = novadata.indexOf("CONTACTID");
           let CONTACTNAME      = novadata.indexOf("CONTACTNAME");
           let SRVINA           = novadata.indexOf("SRVIN");
-
+         
           let telefone         = novadata[CONTACTNAME+1].split("~¿");
 					let telefonefilt     = telefone[0].split(": ");
           
@@ -276,11 +276,21 @@ const setupSocket = (
         case 'Received: WSIMSGLOG':
           let MSG             = novadata.indexOf("MSG");
           let TOCLIENT        = novadata.indexOf("TOCLIENT");
+          let TYPE            = novadata.indexOf("TYPE");
 
           let data = Moment().format('DD/MM/YYYY HH:mm');
           let hora = Moment().format('HH:mm');
-
-          dispatch(add_messages_queue(makeid(32),null,novadata[MSG+1],false,'0',novadata[TOCLIENT+1],data,hora,clientdetailsReducer.mediaid,'Cli',1,''))
+         
+          if(TYPE === 0){
+              dispatch(add_messages_queue(makeid(32),null,novadata[MSG+1],false,'0',novadata[TOCLIENT+1],data,hora,clientdetailsReducer.mediaid,'Cli',1,''))
+          }else{
+            let passjson = JSON.parse(novadata[MSG+1]);
+						let url = passjson.URL;
+						let filesize = passjson.FILESIZE;
+            let caption = passjson.CAPTION;
+            dispatch(add_messages_queue(makeid(32),filesize,url,false,'0',novadata[TOCLIENT+1],data,hora,clientdetailsReducer.mediaid,'Cli',3,caption))
+          }
+              
           break;
         case "Received: WSIMSGLOGREAD":
           break;
