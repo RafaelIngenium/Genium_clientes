@@ -1,86 +1,74 @@
 import React from "react";
-import DEFAULT from "../../../build/images/Profile Bot -1.png"
-
-function isJson(item) {
-  item = typeof item !== "string"
-      ? JSON.stringify(item)
-      : item;
-
-  try {   
-      item = JSON.parse(item);
-  } catch (e) {
-      return false;
-  }
-
-  if (typeof item === "object" && item !== null) {
-      return true;
-  }
-
-  return false;
-}
-
-function createJSON(item){
-  var mensagem_tratada = item
-  mensagem_tratada = item.replace(/¿/gi, "\n");
-  mensagem_tratada = mensagem_tratada.replace(/§/gi, "\r\n");
-  let valor = 1
-  try{
-  mensagem_tratada = '{"'+valor+'": [{"mensagem_tratada":"'+mensagem_tratada+'"}]}';
-  var obj = JSON.parse(mensagem_tratada);
-  mensagem_tratada = obj[1][0].mensagem_tratada
-  } catch(e){
-    mensagem_tratada = item;
-    mensagem_tratada = mensagem_tratada.replace(/\r\n/gi, "ªª");
-    mensagem_tratada = mensagem_tratada.replace(/\r\n/gi, "ªª");
-    mensagem_tratada = mensagem_tratada.replace(/"/gi, "");
-    mensagem_tratada = mensagem_tratada.replace(/[^A-ZÀ-Ú a-zà-ú 0-9 , . ? ! *  # ; : '-' _ + § ¿ { } ' " ª \\ \ ]/g, '')
-    mensagem_tratada = '{"'+valor+'": [{"mensagem_tratada":"'+mensagem_tratada+'"}]}';
-    try{
-      var obj = JSON.parse(mensagem_tratada);
-      mensagem_tratada = obj[1][0].mensagem_tratada
-      mensagem_tratada = mensagem_tratada.replace(/ªª/gi, "\r\n");
-    } catch(e){
-      mensagem_tratada = item;    
-    }
-  }
-  return mensagem_tratada;
-}
+import DEFAULT from "../../../build/images/Profile Bot -1.png";
+import CLIENTDEFAULT from "../../../build/images/default.png";
+import MessageContainer from "../chat-section/MessageContainer";
+import MessageContainerImg from "../chat-section/MessageContainerImg";
+import MessageContainerAudio from "../chat-section/MessageContainerAudio";
+import MessageContainerDocs from "../chat-section/MessageContainerDocs";
+import MessageContainerLocation from "../chat-section/MessageContainerLocation";
+import MessageContainerPDF from "../chat-section/MessageContainerPDF";
+import MessageContainerVideo from "../chat-section/MessageContainerVideo";
+import { dbfileSize } from '../../../store/clientdetails/clientdetails.action'
 
 const ClientChatItem = ({details,position,pathfile}) => {
   return (
   
       <div className={"mini-chat__message-container__buddle mini-chat__message-container__buddle--"+position}>
+        {(() => {
+              if(pathfile === null)
+                pathfile = CLIENTDEFAULT;
+              else 
+               pathfile = "https://cloud.ingweb.com.br/"+pathfile;
+        })()}
         <img
           className={position === 'right' ? "mini-chat__message-container__buddle__img":"mini-chat__message-container__img-bot"}
-          src={position === 'left' ? "https://cloud.ingweb.com.br/"+pathfile:DEFAULT}
+          src={position === 'left' ? pathfile:DEFAULT}
           alt="perfil"
           style={{marginRight: '10px', marginLeft: '10px'}}
         />
         <div class="wrapper-buddle">
           <div className="mini-chat__message-container__buddle__text">
             {(() => {
-                  if(details.mimetypeid == "1"){
-                    var message = createJSON(details.messagem)
-                    // message = message.replace(/¿/gi, "\n");
-                    // message = message.replace(/¿/gi, "\r\n");
-                    // message = message.replace(/↵/gi, "\r\n");
-                    // message = message.replace(/↵/gi, "\n");
-                    console.log(message)
-                    return message;
-                  }else if(details.mimetypeid == "2"){
-                      if (isJson(details.messagem) === true){
-                        let json = JSON.parse(details.messagem);
-                        let options = json.options;
-                        let i = 1;
-                        var opcoes = [];
-                        for (i in options) {
-                            opcoes.push(i+" - "+options[i][1]);
-                        }
-                        return json.msg+" \r\n "
-                      }else{
-                          return details.messagem
-                      }
-                  }
+                  const msgProps = {
+                    mimetypeid: details.mimetypeid,
+                    messagem: details.messagem,
+                    filesize: dbfileSize(details.filesize)  
+                  };
+                  if(details.mimetypeid == "1" || details.mimetypeid == "2"){
+                    return <MessageContainer {...msgProps} />
+                  }else if(details.mimetypeid == "3" || details.mimetypeid == "4" || details.mimetypeid == "5" || (details.mimetypeid >= "6" && details.mimetypeid <= 28)){
+                    let separador = details.messagem.split(".");
+                    switch(separador[1]) {
+                    case 'jpeg':
+                    case 'png':
+                    case 'PNG':
+                    case 'jpg':
+                      return <MessageContainerImg {...msgProps} />
+                    break;
+                      case 'pdf':
+                      return <MessageContainerPDF {...msgProps} />
+                    break;
+                    case 'xls':
+                    case 'xlsx':
+                    case 'doc':
+                    case 'docx':
+                    case 'ppt':
+                    case 'pptx':
+                      return <MessageContainerDocs {...msgProps} />
+                    break;
+                    case 'wav':
+                    case 'mp3':
+                    case 'ogg':
+                    case 'mpeg':
+                      return <MessageContainerAudio {...msgProps} />
+                    break;
+                    case 'mp4':
+                      return <MessageContainerVideo {...msgProps} />
+                    break;
+                    }
+                }else if(details.mimetypeid == "29"){
+                      return <MessageContainerLocation {...msgProps} />
+                }
               })()
             }
           </div>

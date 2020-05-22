@@ -15,24 +15,24 @@ export default function clientdetails(state = [], action) {
         return {...state, messages: action.todos}
       case ClienteDetailsActionTypes.ADD_MESSAGES:
         var array = state.messages
-        array.push({agente: true,
+        array.push({agente: action.agente,
                             anoenvio: "",
-                            caption: null,
+                            caption: action.caption,
                             cliente: "",
-                            data_hora_envio: Moment().format('DD/MM/YYYY HH:mm'),
+                            data_hora_envio: action.data,
                             diaenvio: "",
                             favorite: false,
-                            filesize: null,
-                            horaenvio: Moment().format('HH:mm'),
+                            filesize: action.filesize,
+                            horaenvio: action.hora,
                             id: '',
-                            idmidia: '',
+                            idmidia: action.mediaid,
                             mesenvio: "",
-                            messagem: action.todos,
+                            messagem: action.messagem,
                             midia: "WhatsApp",
-                            mimetypeid: 1,
+                            mimetypeid: action.mimetypeid,
                             mon_type_id: 0,
                             thumbnail: null,
-                            username: "IMS-9300"})
+                            username: action.username})
         return {...state, messages: array}
       default:
         return state;

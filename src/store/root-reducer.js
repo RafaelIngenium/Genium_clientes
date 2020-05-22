@@ -11,7 +11,8 @@ import agentReducer from "./agent/agent.reducer";
 import topfiveflowReducer from "./topfiveflow/topfiveflow.reducer"
 import clientdetailsReducer from "./clientdetails/clientdetails.reducer"
 import quickanswerReducer from "./quickanswer/quickanswer.reducer"
+import uploadfileReducer from "./uploadfile/uploadfile.reducer"
 
-const rootReducer = combineReducers({ userReducer, modalReducer, environmentReducer, supervisiongroupReducer, servicegroupReducer, queueReducer, queuepermissionReducer, agentReducer, topfiveflowReducer, clientdetailsReducer, quickanswerReducer });
+const rootReducer = combineReducers({ userReducer, modalReducer, environmentReducer, supervisiongroupReducer, servicegroupReducer, queueReducer, queuepermissionReducer, agentReducer, topfiveflowReducer, clientdetailsReducer, quickanswerReducer, uploadfileReducer });
 
 export default rootReducer;

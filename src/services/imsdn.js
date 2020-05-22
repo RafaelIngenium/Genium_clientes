@@ -62,8 +62,8 @@ function InviteMessage (infousers,contactid,msg){
   msg = escape(msg)
   msg = msg.replace(/%u/gi, "\\u");
   msg = unescape(msg)
-  console.log(msg)
-  console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\n\r\n");
+  // console.log(msg)
+  // console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\n\r\n");
   socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n");
 };
 
@@ -91,6 +91,79 @@ function RegisterReqSocket (user,strSubMonit,strGrp){
 
 };
 
+export const SendFile = (contactid, infousers, msg, caption, makeid) => {
+  UrlFileSend(contactid, infousers, msg, caption, makeid);
+}
+
+function UrlFileSend (reducerUser,contactid,msg, caption,makeid){
+  var infousers = reducerUser.user;
+  let separador = msg.split(".");
+  var mimetype = "";
+  switch(separador[1].toLowerCase()) {
+    case 'jpeg':
+    case 'png':
+    case 'jpg':
+      mimetype = "image/jpeg";
+    break;
+
+    case 'pdf':
+      mimetype = "application/pdf";
+    break;
+
+    case 'xls':
+      mimetype = "application/vnd.ms-excel";
+    break;
+
+    case 'xlsx':
+      mimetype = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+    break;
+
+    case 'doc':
+      mimetype = "application/msword";
+    break;
+
+    case 'docx':
+      mimetype = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+    break;
+
+    case 'ppt':
+      mimetype = "application/vnd.ms-powerpoint";
+    break;
+
+    case 'pptx':
+      mimetype = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+    break;
+    
+    case 'wav':
+      mimetype = "audio/wav";
+    break;
+
+    case 'mp3':
+      mimetype = "audio/mp3";
+    break;
+
+    case 'ogg':
+      mimetype = "audio/ogg";
+    break;
+
+    case 'mpeg':
+      mimetype = "audio/mpeg";
+    break;
+    
+    case 'mp4':
+      mimetype = "video/mp4";
+    break;
+    
+    case 'zip':
+      mimetype = "application/x-zip-compressed";
+    break;
+  }
+  
+  let createjson = '{"CDR":'+contactid.cdrid+',"URL":"'+msg+'", "THUMBNAIL":"", "CAPTION":"'+caption+'","MIMETYPE":"'+mimetype+'"}';
+  // console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n")
+  socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n");
+};
+
 const setupSocket = (
   getState,
   dispatch,
@@ -104,7 +177,7 @@ const setupSocket = (
       var valorDiferenca = parseInt(Math.abs(Math.round(environmentReducer.diff_time)));
       let datareceived = "Received: " + event.data;
       const novadata = datareceived.split("\r\n");
-      console.log(novadata)
+      //console.log(novadata)
       switch (novadata[0]) {
         case "Received: USRMSGLOG":
           break;

@@ -11,22 +11,34 @@ import { PopUver } from "../../../utils/Typpy";
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 import { InviteMessages } from '../../../services/imsdn'
-import { add_messages_queue } from "../../../store/clientdetails/clientdetails.action"
+import { add_messages_queue, insert_upload } from "../../../store/clientdetails/clientdetails.action"
 
 var data = ""
 var temp = ""
 
+function makeid(length) {
+  var text = "";
+  var possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+}
+
 const ClientChat = () => {
-  const clientdetails              = useSelector(state => state.clientdetailsReducer);
-  const user                       = useSelector(state => state.userReducer);
-  const quickanswers               = useSelector(state => state.quickanswerReducer);
-  const [textInput, setText]       = useState("");
-  const [scroller, setScroller]    = useState("");
-  const dispatch                   = useDispatch();
-  const containers                 = useRef();
-  const inputEl                    = useRef(null);
-  const simultClick                = useRef(null);
-  const inputFile                  = useRef(null);
+  const clientdetails                       = useSelector(state => state.clientdetailsReducer);
+  const user                                = useSelector(state => state.userReducer);
+  const quickanswers                        = useSelector(state => state.quickanswerReducer);
+  const [textInput, setText]                = useState("");
+  const [scroller, setScroller]             = useState("");
+  const dispatch                            = useDispatch();
+  const containers                          = useRef();
+  const inputEl                             = useRef(null);
+  const simultClick                         = useRef(null);
+  const inputFile                           = useRef(null);
+  const [loadedFile, setLoadedFile]         = useState("");
+  const [selectedFile, setselectedFile]     = useState("");
 
   const renderPopoverMessage = (e,todos) => (
     <div class="context-menu" id="premade-msg">
@@ -61,6 +73,26 @@ const ClientChat = () => {
     inputFile.current.click();
   }
 
+  const handleselectedFile = (event) => {
+    let filesend = event.target.files[0];
+    if (filesend !== undefined) {
+      setselectedFile(filesend)
+      setLoadedFile(0)
+      let data = new FormData();
+      let namefile = filesend.name;
+      let hora = Moment().format("HH-mm-ss");
+      let random = Math.floor(Math.random() * 999999 + 100000);
+      random = random + "_" + hora;
+      let ext = namefile.split(".").pop();
+      namefile = random + "." + ext;
+      data.append("file", filesend, namefile);
+        dispatch(insert_upload(data,makeid(32),textInput,filesend.size))
+        setText('')
+    }
+
+    document.getElementById("file-input").value = "";
+  }
+
   const addMessage = (texto) => { 
     setText(textInput+texto);
     simultClick.current.click();
@@ -68,23 +100,33 @@ const ClientChat = () => {
   }
 
   const sendMessage = () => { 
-    setText('')
-    dispatch(add_messages_queue(textInput))
-    InviteMessages(user.user,clientdetails,textInput)
+    setText('')    
+    let data = Moment().format('DD/MM/YYYY HH:mm');
+    let hora = Moment().format('HH:mm');
+    if(textInput !== ''){
+      dispatch(add_messages_queue(makeid(32),null,textInput,true,clientdetails.caller,clientdetails.cdrid,data,hora,clientdetails.mediaid,'Me',1,''))
+      InviteMessages(user.user,clientdetails,textInput)
+    }
     setText('')
   }
 
   useEffect(() => {
+    console.log(scroller)
+    console.log(containers.current.scrollHeight)
     if (scroller !== containers.current.scrollHeight) {
       containers.current.scrollTop = containers.current.scrollHeight;
       setScroller(containers.current.scrollHeight);
     }
-  })
+  },[clientdetails])
 
   const HandleKeyPress = (event) => {
     if (event.key === "Enter" && event.shiftKey === false) {
-      dispatch(add_messages_queue(textInput))
-      InviteMessages(user.user,clientdetails,textInput)
+      let data = Moment().format('DD/MM/YYYY HH:mm');
+      let hora = Moment().format('HH:mm');
+      if(textInput !== ''){
+        dispatch(add_messages_queue(makeid(32),null,textInput,true,clientdetails.caller,clientdetails.cdrid,data,hora,clientdetails.mediaid,'Me',1,''))
+        InviteMessages(user.user,clientdetails,textInput)
+      }
       setText('')
     }
   }
@@ -124,13 +166,12 @@ const ClientChat = () => {
       </div>
     </div>
   );
- 
 
   return (
     <div className="chat-content">
       <div className="chat">
-        <div className="mini-chat__body" ref={containers}>
-          <div className="mini-chat__message-container" style={{maxHeight: '400px'}} >
+        <div className="mini-chat__body" >
+          <div className="mini-chat__message-container" ref={containers} style={{maxHeight: '400px'}}>
             {clientdetails.messages.map(details => (
               <>
                
@@ -191,6 +232,7 @@ const ClientChat = () => {
                         name="upload"
                         ref={inputFile}
                         id="file-input"
+                        onChange={event => handleselectedFile(event)}
                       />
                 </button>
 

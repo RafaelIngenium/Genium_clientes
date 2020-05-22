@@ -52,39 +52,39 @@ $(document).ready(function () {
             debugMode: true // [9]
         });
 
-    
-    $('.container-login .forgotLink').click(function(){
-       $('.container-login').removeClass('active')
-       $('.container-forgot').addClass('active')
+
+    $('.container-login .forgotLink').click(function () {
+        $('.container-login').removeClass('active')
+        $('.container-forgot').addClass('active')
 
     })
-    $('.container-forgot .btn').click(function(){
-       
-       $('.notification').addClass('active')
-       
+    $('.container-forgot .btn').click(function () {
+
+        $('.notification').addClass('active')
+
     })
-    
-    $('.notification').click(function(){ 
+
+    $('.notification').click(function () {
         $('.container-forgot ').removeClass('active')
         $('.container-reset-password').addClass('active')
-        
-    })
-    
-    $('.container-reset-password .btn').click(function(){
-       
-        $('.container-reset-password').removeClass('active')
-        $('.container-finish').addClass('active')
-      
-       
+
     })
 
-    $('.container-finish .btn').click(function(){
-       
+    $('.container-reset-password .btn').click(function () {
+
+        $('.container-reset-password').removeClass('active')
+        $('.container-finish').addClass('active')
+
+
+    })
+
+    $('.container-finish .btn').click(function () {
+
         $('.container-finish').removeClass('active')
         $('.container-login').addClass('active')
-    
-      
-       
+
+
+
     })
 
 
@@ -100,6 +100,37 @@ $(document).ready(function () {
     $(".btn-overlay").click(function () {
         $(this).toggleClass("active");
         $('.mini-chat').toggleClass("active");
+    });
+
+
+    // BUBBLE MEDIA
+    $(".bubble-media__btn-play").on("click", function (e) {
+        e.target.textContent == "play_arrow"
+            ? (e.target.textContent = "pause")
+            : (e.target.textContent = "play_arrow");
+    });
+    $(".bubble-media__btn-vol").on("click", function (e) {
+        e.target.textContent == "volume_up"
+            ? (e.target.textContent = "volume_off")
+            : (e.target.textContent = "volume_up");
+    });
+
+    $(".bubble-media__download").on("click", function (e) {
+        $(this).toggleClass("stop");
+        $(this)
+            .find(".material-icons")
+            .text() == "get_app"
+            ? $(this)
+                .find(".material-icons")
+                .text("stop")
+            : $(this)
+                .find(".material-icons")
+                .text("get_app");
+        $(this)
+            .parent()
+            .parent()
+            .find(".bubble-media__progressbar-wrapper")
+            .toggleClass("active");
     });
 
     $("#new-flow").click(function () {
@@ -118,7 +149,7 @@ $(document).ready(function () {
     });
 
 
-    
+
 
     $('.btn-add-answer').click(function () {
         $('.constructor__container-start__add-answer').addClass('active');
@@ -628,14 +659,6 @@ $(document).ready(function () {
     })
 
 
-
-
-
-
-
-
-
-
     function removeSkill() {
         $('.skill-coding.basic').removeClass('active')
         $('.skill-coding.intermediate').removeClass('active')
@@ -763,7 +786,7 @@ $(document).ready(function () {
         remoV();
         $(this).addClass('active')
         $('.constructor').addClass('active')
-        
+
 
     })
     $('.sub-header-container .publish-nav').click(function () {
@@ -786,33 +809,33 @@ $(document).ready(function () {
 
 
     }
-    
-    $('.menu-publish__item.lang').click(function(){
+
+    $('.menu-publish__item.lang').click(function () {
         remoVi()
         $(this).addClass('active');
         $('.container-language').addClass('active')
-        
+
     })
-    $('.menu-publish__item.general').click(function(){
+    $('.menu-publish__item.general').click(function () {
         remoVi()
         $(this).addClass('active');
         $('.container-general').addClass('active')
-        
+
     })
-    $('.menu-publish__item.autori').click(function(){
+    $('.menu-publish__item.autori').click(function () {
         remoVi()
         $(this).addClass('active');
         $('.container-authorization').addClass('active')
         $('.publish__container__bottom button').addClass('active')
-        
+
     })
 
-    
-    $('.wrapper-general-items .select-btn').click(function(){
+
+    $('.wrapper-general-items .select-btn').click(function () {
         $('.list-drop').toggleClass('active')
     })
 
-    $('#map-variables .wrappep-map-var .select-btn').click(function(){
+    $('#map-variables .wrappep-map-var .select-btn').click(function () {
         $('#map-variables .wrappep-map-var .list-drop').toggleClass('active')
     })
 
@@ -824,18 +847,18 @@ $(document).ready(function () {
 
     }
 
-    $('.change-butons-map__item.rsp').click(function(){
+    $('.change-butons-map__item.rsp').click(function () {
         removeDt();
         $(this).addClass('active');
         $('.map-var__response').addClass('active');
     })
-    
-    $('.change-butons-map__item.dts').click(function(){
+
+    $('.change-butons-map__item.dts').click(function () {
         removeDt();
         $(this).addClass('active');
         $('.map-var__dataset').addClass('active');
     })
-   
+
     removt = () => {
         $('.container-confirm').removeClass('active')
         $('.container-loading1').removeClass('active');
@@ -843,25 +866,26 @@ $(document).ready(function () {
         $('.modal__footer').removeClass('active');
     }
 
-    $('.modal__btn.modal__btn-primary.yes').click(function(){
+    $('.modal__btn.modal__btn-primary.yes').click(function () {
         removt();
         $('.container-loading1').addClass('active');
     })
 
-    $('.modal__btn.modal__btn-primary.yes').click(function(){
+    $('.modal__btn.modal__btn-primary.yes').click(function () {
         removt();
         $('.container-loading1').addClass('active');
     })
 
 
-    $('.container-loading1').click(function(){
+    $('.container-loading1').click(function () {
         removt();
         $('.container-pub-result').addClass('active');
     })
 
-    
-    
 
+
+
+    
 
     // Ellipsis({
     //     className: '.text-ellipsis',
@@ -1199,219 +1223,219 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-//     /*Grafico Barra*/
+    //     /*Grafico Barra*/
 
-//     var optionsBar = {
-//         chart: {
-//             height: 100,
-//             width: 255,
-//             type: 'bar',
-//             sparkline: {
-//                 enabled: true
-//             }
-//         },
+    //     var optionsBar = {
+    //         chart: {
+    //             height: 100,
+    //             width: 255,
+    //             type: 'bar',
+    //             sparkline: {
+    //                 enabled: true
+    //             }
+    //         },
 
-//         plotOptions: {
-//             bar: {
-//                 horizontal: true,
-//             }
-//         },
-//         dataLabels: {
-//             enabled: false
-//         },
-//         series: [{
-//             data: [400, 430, 448, 470, 540]
-//         }],
-//         xaxis: {
-//             categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy'],
-//         }
-//     }
+    //         plotOptions: {
+    //             bar: {
+    //                 horizontal: true,
+    //             }
+    //         },
+    //         dataLabels: {
+    //             enabled: false
+    //         },
+    //         series: [{
+    //             data: [400, 430, 448, 470, 540]
+    //         }],
+    //         xaxis: {
+    //             categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy'],
+    //         }
+    //     }
 
-//     var chartBar = new ApexCharts(
-//         document.querySelector(".chartBar"),
-//         optionsBar
-//     );
+    //     var chartBar = new ApexCharts(
+    //         document.querySelector(".chartBar"),
+    //         optionsBar
+    //     );
 
-//     chartBar.render();
-
-
-//     /* Semi circulo */
-//     var optionsSemi = {
-//         chart: {
-//             type: 'radialBar',
-//             offsetY: -20,
-//             width: 300,
-//             height: 300,
-//         },
-//         plotOptions: {
-//             radialBar: {
-//                 startAngle: -90,
-//                 endAngle: 90,
-//                 track: {
-//                     background: "#e7e7e7",
-//                     strokeWidth: '97%',
-//                     margin: 5, // margin is in pixels
-//                     shadow: {
-//                         enabled: true,
-//                         top: 2,
-//                         left: 0,
-//                         color: '#999',
-//                         opacity: 1,
-//                         blur: 2
-//                     }
-//                 },
-//                 dataLabels: {
-//                     name: {
-//                         show: false
-//                     },
-//                     value: {
-//                         offsetY: -2,
-//                         fontSize: '22px'
-//                     }
-//                 }
-//             }
-//         },
-//         fill: {
-//             type: 'gradient',
-//             gradient: {
-//                 shade: 'light',
-//                 shadeIntensity: 0.4,
-//                 inverseColors: false,
-//                 opacityFrom: 1,
-//                 opacityTo: 1,
-//                 stops: [0, 50, 53, 91]
-//             },
-//         },
-//         series: [76],
-//         labels: ['Average Results'],
-
-//     }
-
-//     var chartSemi = new ApexCharts(
-//         document.querySelector(".chartSemi"),
-//         optionsSemi
-//     );
-
-//     chartSemi.render();
-
-//     /* Grafico Column */
+    //     chartBar.render();
 
 
+    //     /* Semi circulo */
+    //     var optionsSemi = {
+    //         chart: {
+    //             type: 'radialBar',
+    //             offsetY: -20,
+    //             width: 300,
+    //             height: 300,
+    //         },
+    //         plotOptions: {
+    //             radialBar: {
+    //                 startAngle: -90,
+    //                 endAngle: 90,
+    //                 track: {
+    //                     background: "#e7e7e7",
+    //                     strokeWidth: '97%',
+    //                     margin: 5, // margin is in pixels
+    //                     shadow: {
+    //                         enabled: true,
+    //                         top: 2,
+    //                         left: 0,
+    //                         color: '#999',
+    //                         opacity: 1,
+    //                         blur: 2
+    //                     }
+    //                 },
+    //                 dataLabels: {
+    //                     name: {
+    //                         show: false
+    //                     },
+    //                     value: {
+    //                         offsetY: -2,
+    //                         fontSize: '22px'
+    //                     }
+    //                 }
+    //             }
+    //         },
+    //         fill: {
+    //             type: 'gradient',
+    //             gradient: {
+    //                 shade: 'light',
+    //                 shadeIntensity: 0.4,
+    //                 inverseColors: false,
+    //                 opacityFrom: 1,
+    //                 opacityTo: 1,
+    //                 stops: [0, 50, 53, 91]
+    //             },
+    //         },
+    //         series: [76],
+    //         labels: ['Average Results'],
+
+    //     }
+
+    //     var chartSemi = new ApexCharts(
+    //         document.querySelector(".chartSemi"),
+    //         optionsSemi
+    //     );
+
+    //     chartSemi.render();
+
+    //     /* Grafico Column */
 
 
 
 
-//     var optionsColumn = {
-//         chart: {
-//             width: 200,
-//             height: 100,
-//             type: 'bar',
-//             stacked: true,
-//             toolbar: {
-//                 show: false
-//             },
-//             zoom: {
-//                 enabled: false
-//             },
-//             sparkline: {
-//                 enabled: true
-//             },
-
-//         },
-
-//         plotOptions: {
-//             bar: {
-
-//                 horizontal: false,
-//                 columnWidth: '35%',
-//                 heatmap: {
-//                     radius: 10,
-
-//                 },
-//             },
-
-//         },
-//         series: [{
-//             name: 'PRODUCT A',
-//             data: [44, 55, 41, 67, 22, 43],
-
-//         }, {
-//             name: 'PRODUCT B',
-//             data: [13, 23, 20, 8, 13, 27]
-//         }],
-//         // xaxis: {
-//         //     type: 'datetime',
-//         //     categories: ['01/01/2011 GMT', '01/02/2011 GMT', '01/03/2011 GMT', '01/04/2011 GMT', '01/05/2011 GMT', '01/06/2011 GMT'],
-//         // },
-
-//         legend: {
-//             show: false,
-//             position: 'right',
-//             offsetY: 40
-//         },
-//         fill: {
-//             opacity: 1,
-
-//         },
-
-//     }
-
-//     var chartColumn = new ApexCharts(
-//         document.querySelector(".chartColumn"),
-//         optionsColumn
-//     );
-
-//     chartColumn.render();
 
 
+    //     var optionsColumn = {
+    //         chart: {
+    //             width: 200,
+    //             height: 100,
+    //             type: 'bar',
+    //             stacked: true,
+    //             toolbar: {
+    //                 show: false
+    //             },
+    //             zoom: {
+    //                 enabled: false
+    //             },
+    //             sparkline: {
+    //                 enabled: true
+    //             },
 
-//     /*Grafico Pizza */
+    //         },
 
-//     var optionsPie = {
-//         chart: {
-//             type: 'donut',
-//             width: 170,
-//             height: 170,
-//             toolbar: {
-//                 show: false
-//             },
-//             sparkline: {
-//                 enabled: true
-//             },
-//         },
+    //         plotOptions: {
+    //             bar: {
 
-//         plotOptions: {
-//             pie: {
-//                 donut: {
-//                     size: '66px',
-//                     labels: {
-//                         show: true,
-//                         name: {
-//                             show: true,
-//                             fontSize: 20,
-//                             color: '#51525A',
-//                         },
-//                         total: {
-//                             show: true,
-//                         }
-//                         // value: {
+    //                 horizontal: false,
+    //                 columnWidth: '35%',
+    //                 heatmap: {
+    //                     radius: 10,
 
-//                         // }
-//                     }
-//                 }
-//             }
-//         },
-//         series: [44, 55, 41],
+    //                 },
+    //             },
 
-//     }
+    //         },
+    //         series: [{
+    //             name: 'PRODUCT A',
+    //             data: [44, 55, 41, 67, 22, 43],
+
+    //         }, {
+    //             name: 'PRODUCT B',
+    //             data: [13, 23, 20, 8, 13, 27]
+    //         }],
+    //         // xaxis: {
+    //         //     type: 'datetime',
+    //         //     categories: ['01/01/2011 GMT', '01/02/2011 GMT', '01/03/2011 GMT', '01/04/2011 GMT', '01/05/2011 GMT', '01/06/2011 GMT'],
+    //         // },
+
+    //         legend: {
+    //             show: false,
+    //             position: 'right',
+    //             offsetY: 40
+    //         },
+    //         fill: {
+    //             opacity: 1,
+
+    //         },
+
+    //     }
+
+    //     var chartColumn = new ApexCharts(
+    //         document.querySelector(".chartColumn"),
+    //         optionsColumn
+    //     );
+
+    //     chartColumn.render();
 
 
-//     var chartPie = new ApexCharts(
-//         document.querySelector(".chartPie"),
-//         optionsPie
-//     );
 
-//     chartPie.render();
+    //     /*Grafico Pizza */
+
+    //     var optionsPie = {
+    //         chart: {
+    //             type: 'donut',
+    //             width: 170,
+    //             height: 170,
+    //             toolbar: {
+    //                 show: false
+    //             },
+    //             sparkline: {
+    //                 enabled: true
+    //             },
+    //         },
+
+    //         plotOptions: {
+    //             pie: {
+    //                 donut: {
+    //                     size: '66px',
+    //                     labels: {
+    //                         show: true,
+    //                         name: {
+    //                             show: true,
+    //                             fontSize: 20,
+    //                             color: '#51525A',
+    //                         },
+    //                         total: {
+    //                             show: true,
+    //                         }
+    //                         // value: {
+
+    //                         // }
+    //                     }
+    //                 }
+    //             }
+    //         },
+    //         series: [44, 55, 41],
+
+    //     }
+
+
+    //     var chartPie = new ApexCharts(
+    //         document.querySelector(".chartPie"),
+    //         optionsPie
+    //     );
+
+    //     chartPie.render();
 
 
 
