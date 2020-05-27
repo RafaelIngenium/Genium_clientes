@@ -95,9 +95,8 @@ export const carregarmessages = (cdr) => {
         let data = Moment().format('DD/MM/YYYY HH:mm');
         let hora = Moment().format('HH:mm');
         let tamanho = dbfileSize(size);
-        let mimetypeid = 3
         // console.log(makeid," ~¿"+caption+"~¿"+file.path+"~¿"+tamanho, "Me", time, clientdetailsReducer.cdrid, '1', 'visto', false, dia)
-        dispatch(add_messages_queue(makeid,size,file.path,true,clientdetailsReducer.caller,clientdetailsReducer.cdrid, data, hora, clientdetailsReducer.mediaid, 'Me', mimetypeid,caption))
+        dispatch(add_messages_queue(makeid,size,file.path,true,clientdetailsReducer.caller,clientdetailsReducer.cdrid, data, hora, clientdetailsReducer.mediaid, 'Me', 3,caption))
       })
     };
   }

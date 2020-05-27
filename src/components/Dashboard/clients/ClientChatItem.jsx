@@ -32,7 +32,8 @@ const ClientChatItem = ({details,position,pathfile}) => {
                   const msgProps = {
                     mimetypeid: details.mimetypeid,
                     messagem: details.messagem,
-                    filesize: dbfileSize(details.filesize)  
+                    filesize: dbfileSize(details.filesize),
+                    caption: details.caption
                   };
                   if(details.mimetypeid == "1" || details.mimetypeid == "2"){
                     return <MessageContainer {...msgProps} />

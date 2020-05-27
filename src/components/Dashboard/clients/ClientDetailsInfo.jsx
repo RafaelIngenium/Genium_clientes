@@ -44,12 +44,18 @@ const ClientDetailsInfo = () => {
                                  Mover para fila
                              </button>
                             );
-                    }else{
+                    }else if(queue.status !== '0'){
                       return (
                               <button className="btn-outlined btn-outlined--primary" onClick={answerCall}>
                                 Atender
                               </button>
                             );
+                    }else{
+                      return (
+                              <button className="btn-outlined btn-outlined--primary" onClick={answerCall}>
+                                Contactar
+                              </button>
+                      );
                     }
           })()
         }

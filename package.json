@@ -10,6 +10,7 @@
     "hh-mm-ss": "^1.2.0",
     "material-icons": "^0.3.1",
     "md5": "^2.2.1",
+    "mic-recorder-to-mp3": "^2.2.1",
     "micromodal": "^0.4.2",
     "moment": "^2.24.0",
     "react": "^16.12.0",

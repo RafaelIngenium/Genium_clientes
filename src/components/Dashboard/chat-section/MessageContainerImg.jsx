@@ -31,7 +31,8 @@ if(pathname !== connection_platform.ip_intern){
 const MessageContainerImg = ({
   mimetypeid,
   messagem,
-  filesize
+  filesize,
+  caption
 }) => {
     var Name = messagem.split('/').pop();
         Name = Name.split('.').shift();
@@ -58,9 +59,12 @@ const MessageContainerImg = ({
                 </div>
             </span>
             <span class="bubble-media__download">
-                <i class="material-icons">get_app</i>
+                    <a href={connection_platform.type_connect+'://'+ ipcurrent + messagem} target="_blank" download className="bubble-media__btnDownload">
+                         <i class="material-icons">get_app</i>
+                    </a>
             </span>
         </div>
+        <div className="text">{caption}</div>
         <div class="bubble-media__progressbar-wrapper">
             <div class="bubble-media__progressbar-track">
                 <div class="bubble-media__progressbar-bullet" style={{width:'17%'}}></div>

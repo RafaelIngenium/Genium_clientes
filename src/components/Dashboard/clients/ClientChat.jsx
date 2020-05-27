@@ -10,9 +10,13 @@ import { ReactComponent as Voz } from "../../../build/images/voz_icon.svg";
 import { PopUver } from "../../../utils/Typpy";
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
-import { InviteMessages } from '../../../services/imsdn'
+import TimeCounterSecond from '../../../utils/TimeCounterSecond'
+import { InviteMessages,SendFile } from '../../../services/imsdn'
 import { add_messages_queue, insert_upload } from "../../../store/clientdetails/clientdetails.action"
+import MicRecorder from 'mic-recorder-to-mp3';
+import { connection_platform } from "../../../services/api";
 
+const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 var data = ""
 var temp = ""
 
@@ -39,6 +43,11 @@ const ClientChat = () => {
   const inputFile                           = useRef(null);
   const [loadedFile, setLoadedFile]         = useState("");
   const [selectedFile, setselectedFile]     = useState("");
+  const [file, setFile]                     = useState("");
+  const [record, setRecord]                 = useState(true);
+  const [sendrecord, setsendRecord]         = useState(false);
+  const [filerecord, setfileRecord]         = useState([]);
+  const [isblocked, setBlocked]             = useState(false);
 
   const renderPopoverMessage = (e,todos) => (
     <div class="context-menu" id="premade-msg">
@@ -48,7 +57,7 @@ const ClientChat = () => {
             <div class="premade-msg__content">
                 <ul class="premade-msg__list">
                     {todos.map(todo => (
-                      <li class="premade-msg__item" onClick={() => addMessage(todo.qck_asw_answer)}>
+                      <li class="premade-msg__item" onClick={() => addMessage(todo.qck_asw_answer,todo.editable,todo.mimetypeid,todo.filepath)}>
                         {todo.qck_asw_keyword}
                       </li>
                     ))}
@@ -64,6 +73,76 @@ const ClientChat = () => {
         </div>
     </div>
   );
+
+  useEffect(() => {
+    if(connection_platform.type_connect === 'https'){        
+      navigator.getMedia = ( navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia)
+
+        navigator.getMedia({ audio: true },
+        () => {
+          setBlocked(false)
+        },
+        () => {
+          setBlocked(false)
+        },
+      );
+    }
+  }, [])
+
+  useEffect(() => {
+    if(sendrecord && filerecord){
+      let audiofile = []
+      let data = new FormData();
+      let hora = Moment().format("HH-mm-ss");
+      let random = Math.floor(Math.random() * 999999 + 100000);
+      random = random + "_" + hora;
+      let namefile = random + ".mp3";
+      data.append("file", filerecord, namefile);
+      audiofile = data;
+      dispatch(insert_upload(audiofile,makeid(32),textInput,filerecord.size))
+      setfileRecord('')
+      setsendRecord(false)
+    }
+    
+  },[filerecord])
+
+  const start = () => {
+    setRecord(!record)
+    if (isblocked) {
+    } else {
+      Mp3Recorder
+        .start()
+        .then(() => {
+        }).catch((e) => console.error(e));
+    }
+  };
+
+  
+  const stopIn = () => {
+    setRecord(!record)
+    Mp3Recorder
+      .stop()
+      .getMp3()
+      .then(([buffer, blob]) => {
+        const blobURL = blob;
+        setsendRecord(true)
+        setfileRecord(blobURL)
+      }).catch((e) => console.log(e));
+  };
+
+  const stop = () => {
+    setRecord(!record)
+    Mp3Recorder
+      .stop()
+      .getMp3()
+      .then(([buffer, blob]) => {
+        setsendRecord(false)
+        setfileRecord([])
+      }).catch((e) => console.log(e));
+  };
 
   const addEmoji = (emoji) => { 
     setText(textInput+emoji.native)
@@ -93,21 +172,46 @@ const ClientChat = () => {
     document.getElementById("file-input").value = "";
   }
 
-  const addMessage = (texto) => { 
-    setText(textInput+texto);
-    simultClick.current.click();
-    inputEl.current.focus();
+  const addMessage = (texto,editable,mimetypeid,filepath) => {
+      setText(textInput+texto);
+      if (mimetypeid !=1) {
+        let gerarnomearquivo = makeid(32);
+        let photo = {
+          uri: filepath,
+          type: "application/pdf",
+          name: gerarnomearquivo + ".pdf"
+        };
+        let fileencryp = new FormData();
+        fileencryp.append("file", gerarnomearquivo + ".pdf");
+        let arrayfile = [filepath, textInput+texto, mimetypeid];
+        setFile(arrayfile);
+      }else{
+        setFile([]);
+        if (editable == false) {
+          document.getElementById("chat-message").disabled = true;
+        } else {
+          document.getElementById("chat-message").disabled = false;
+          document.getElementById("chat-message").focus();
+        }
+      } 
+      simultClick.current.click();
+      document.getElementById("chat-message").focus();
   }
 
   const sendMessage = () => { 
-    setText('')    
     let data = Moment().format('DD/MM/YYYY HH:mm');
     let hora = Moment().format('HH:mm');
-    if(textInput !== ''){
-      dispatch(add_messages_queue(makeid(32),null,textInput,true,clientdetails.caller,clientdetails.cdrid,data,hora,clientdetails.mediaid,'Me',1,''))
-      InviteMessages(user.user,clientdetails,textInput)
+    if(file != null && file[2] != 1 && file.length > 0) {
+      dispatch(add_messages_queue(makeid,file[2],file[0],true,clientdetails.caller,clientdetails.cdrid, data, hora, clientdetails.mediaid, 'Me', 3,textInput))
+      SendFile(user, clientdetails, file[0], textInput, makeid(32));
+      setFile([])
+    }else{
+      if(textInput !== ''){
+        dispatch(add_messages_queue(makeid(32),null,textInput,true,clientdetails.caller,clientdetails.cdrid,data,hora,clientdetails.mediaid,'Me',1,''))
+        InviteMessages(user.user,clientdetails,textInput)
+      }
     }
-    setText('')
+    setText('')  
   }
 
   useEffect(() => {
@@ -118,14 +222,22 @@ const ClientChat = () => {
   },[clientdetails])
 
   const HandleKeyPress = (event) => {
+    let data = Moment().format('DD/MM/YYYY HH:mm');
+    let hora = Moment().format('HH:mm');
     if (event.key === "Enter" && event.shiftKey === false) {
-      let data = Moment().format('DD/MM/YYYY HH:mm');
-      let hora = Moment().format('HH:mm');
-      if(textInput !== ''){
-        dispatch(add_messages_queue(makeid(32),null,textInput,true,clientdetails.caller,clientdetails.cdrid,data,hora,clientdetails.mediaid,'Me',1,''))
-        InviteMessages(user.user,clientdetails,textInput)
+      if(file != null && file[2] != 1 && file.length > 0) {
+        dispatch(add_messages_queue(makeid,file[2],file[0],true,clientdetails.caller,clientdetails.cdrid, data, hora, clientdetails.mediaid, 'Me', 3,textInput))
+        SendFile(user, clientdetails, file[0], textInput, makeid(32));
+        setText('')
+      }else{
+        let data = Moment().format('DD/MM/YYYY HH:mm');
+        let hora = Moment().format('HH:mm');
+        if(textInput !== ''){
+          dispatch(add_messages_queue(makeid(32),null,textInput,true,clientdetails.caller,clientdetails.cdrid,data,hora,clientdetails.mediaid,'Me',1,''))
+          InviteMessages(user.user,clientdetails,textInput)
+        }
+        setText('')
       }
-      setText('')
     }
   }
 
@@ -215,7 +327,7 @@ const ClientChat = () => {
                 </button>
             </div>
 
-            <div class="wrapper-buttons active">
+            <div class={record ? "wrapper-buttons active":"wrapper-buttons"} onClick={start}>
                  <PopUver trigger="click" interactive={true} content={renderPopoverMessage(this, quickanswers)}>
                     <button ref={simultClick} class="mini-chat__footer__btns tippy-context-menu" data-template="premade-msg">
                         <Outline />
@@ -241,14 +353,14 @@ const ClientChat = () => {
 
             </div>
 
-            <div class="active-voice">
-                <a href="#" class="cancel"><i class="material-icons">close</i></a>
+            <div class={record ? "active-voice":"active-voice active"} disabled={isblocked}>
+                <a href="#" class="cancel"><i class="material-icons" onClick={stop}>close</i></a>
 
                 <div class="active-chats__timer active-chats__timer--active-voice">
-                    <span class="active-chats__timer-icon active-chats__timer--active-voice-icon alta">•</span>00:15:27
+                    <span class="active-chats__timer-icon active-chats__timer--active-voice-icon alta">•</span><TimeCounterSecond key={record} horario={0} />
                 </div>
 
-                <a href="#" class="done"><i class="material-icons">done</i></a>
+                <a href="#" class="done"><i class="material-icons" onClick={stopIn}>done</i></a>
 
             </div>
           </div>

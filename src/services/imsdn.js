@@ -66,9 +66,9 @@ function InviteMessage (infousers,contactid,msg){
   // console.log(msg)
   // console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\n\r\n");
   if(contactid.answer == true)
-  socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\n\r\n");
+    socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\n\r\n");
   else
-  socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n");
+    socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n0\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid(32)+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+msg+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n");
 };
 
 export const RegisterReqWebSocket = (dispatch, user, strSubMonit,strGrp) => {
@@ -174,12 +174,15 @@ function UrlFileSend (reducerUser,contactid,msg, caption,makeid){
   }
   
   let createjson = '{"CDR":'+contactid.cdrid+',"URL":"'+msg+'", "THUMBNAIL":"", "CAPTION":"'+caption+'","MIMETYPE":"'+mimetype+'"}';
-  // console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n")
+  //console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n")
   
-  if(contactid.answer === true)
+  if(contactid.answer === false){
      socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n");
-  else
-    socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\n\r\n");
+     console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\nMONUSER\r\n"+infousers.id+"\r\nTMON\r\n3\r\n\r\n")
+  }else{
+     socket.send("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\n\r\n");
+     console.log("WSIMSGLOG\r\n"+infousers.id+"\r\nTYPE\r\n1\r\nTOUSER\r\n1\r\nTOCLIENT\r\n"+contactid.cdrid+"\r\nCALLID\r\n"+makeid+"\r\nUSERNAME\r\n"+infousers.displayname+"\r\nMSG\r\n"+createjson+"\r\n\r\n")
+  }
 };
 
 const setupSocket = (
