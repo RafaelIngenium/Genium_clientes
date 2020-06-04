@@ -1,22 +1,12 @@
 import React from "react";
+import VIDEOBUILD from "../build/images/Genium-Build-Together.gif"
 
 const Loading = () => {
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        zIndex: 9999,
-        color: "white",
-        backgroundColor: "grey"
-      }}
-    >
-      <h1>Carregando...</h1>
-    </div>
-  );
+        <div class="wrapper-anim-col2">
+          <img src={VIDEOBUILD} />
+        </div>
+    );
 };
 
 export default Loading;

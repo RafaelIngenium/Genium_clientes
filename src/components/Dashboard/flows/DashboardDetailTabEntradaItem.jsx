@@ -1,6 +1,6 @@
 import React from "react";
 
-const DashboardDetailTabEntradaItem = () => {
+const DashboardDetailTabEntradaItem = ({flow}) => {
   return (
     <div className="table-card__body__row">
       <div className="table-card__item table-card__item-1">
@@ -13,15 +13,15 @@ const DashboardDetailTabEntradaItem = () => {
             />
           </div>
           <div className="user-info__text">
-            <div className="user-info__text__title">Suporte</div>
+            <div className="user-info__text__title">{flow.name}</div>
           </div>
         </a>
       </div>
-      <div className="table-card__item table-card__item-2">300</div>
-      <div className="table-card__item table-card__item-3">290</div>
-      <div className="table-card__item table-card__item-4">200</div>
-      <div className="table-card__item table-card__item-5">180</div>
-      <div className="table-card__item table-card__item-6">180</div>
+      <div className="table-card__item table-card__item-2">{flow.qtde}</div>
+      <div className="table-card__item table-card__item-3">0</div>
+      <div className="table-card__item table-card__item-4">0</div>
+      <div className="table-card__item table-card__item-5">0</div>
+      <div className="table-card__item table-card__item-6">0</div>
     </div>
   );
 };

@@ -8,9 +8,31 @@ import MessageContainerDocs from "../chat-section/MessageContainerDocs";
 import MessageContainerLocation from "../chat-section/MessageContainerLocation";
 import MessageContainerPDF from "../chat-section/MessageContainerPDF";
 import MessageContainerVideo from "../chat-section/MessageContainerVideo";
-import { dbfileSize } from '../../../store/clientdetails/clientdetails.action'
+import { dbfileSize } from '../../../store/clientdetails/clientdetails.action';
+import Moment from 'moment'
 
-const ClientChatItem = ({details,position,pathfile}) => {
+var data = ""
+var temp = ""
+
+const ClientChatItem = ({details,pathfile}) => {
+  {
+    (() => {
+            data = Moment(details.data_hora_envio,"DD/MM/YYYY HH:mm").format("DD/MM/YYYY");
+            var hora = Moment(details.data_hora_envio,"DD/MM/YYYY HH:mm:ss").format("HH:mm");
+            var now  = Moment().format('DD/MM/YYYY')
+
+
+              if(data === now)
+                data = 'Hoje,'
+            
+              
+              if(hora !== temp){
+                temp = hora;
+                return  <span className="mini-chat__message-container__time">{data+' '+hora }</span>
+              }
+    })()
+  }
+  var position = details.agente === true ? "right":"left";
   return (
   
       <div className={"mini-chat__message-container__buddle mini-chat__message-container__buddle--"+position}>

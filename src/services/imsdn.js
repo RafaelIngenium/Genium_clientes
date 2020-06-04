@@ -3,7 +3,7 @@ import { connection_platform } from "./api";
 import { insertInfoServiceGroup } from "../store/servicegroup/servicegroup.action"
 import { addListCallQueue,editListCallQueue,returnListCallQueue,returnListCallQueueObs,deleteListCallQueue,InsertAnswerACK } from "../store/queue/queue.action"
 import { refresh_agent } from "../store/agent/agent.action"
-import { anwsers_accept,add_messages_queue } from "../store/clientdetails/clientdetails.action"
+import { anwsers_accept,add_messages_queue,changeStatusQueue } from "../store/clientdetails/clientdetails.action"
 import Moment from 'moment'
 
 const iplocal = connection_platform.ip_intern;
@@ -304,11 +304,20 @@ const setupSocket = (
         case "Received: CHATTRANSFERCMPLT":
           break;
         case "Received: CALLQUEUE":
+
           let PROFILEPHOTO    = novadata.indexOf("PROFILEPHOTO");
           let REASON		      = novadata.indexOf("REASON");
           let TP		          = novadata.indexOf("TP");
           let QUEUEID		      = novadata.indexOf("QUEUEID");
           let CQUEUE	        = novadata.indexOf("CQUEUE");
+          let CDRIDQUEUE      = novadata.indexOf("CDRID");
+
+          if(clientdetailsReducer.cdrid === parseInt(novadata[CDRIDQUEUE+1]))
+             dispatch(changeStatusQueue(novadata[CQUEUE+1]))
+
+          if(clientdetailsReducer.queueid === parseInt(novadata[QUEUEID+1]))
+              dispatch(changeStatusQueue(novadata[CQUEUE+1])  )
+
           if(qtde_fila>0){
             if(queuepermissionReducer){
               //console.log("PSSOU")

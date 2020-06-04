@@ -5,6 +5,7 @@ const ClienteDetailsActionTypes = {
       CREATE_MESSAGES: "CREATE_MESSAGES",
       ADD_MESSAGES: "ADD_MESSAGES",
       ACCEPT_ANWSER: "ACCEPT_ANWSER",
+      CHANGE_STATUS_QUEUE: "CHANGE_STATUS_QUEUE",
   };
   
   export default ClienteDetailsActionTypes;

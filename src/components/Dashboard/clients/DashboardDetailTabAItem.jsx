@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import CLIENTDEFAULT from "../../../build/images/default.png";
 import _ from "lodash";
 import Moment from 'moment'
 import { create_info_client } from "../../../store/clientdetails/clientdetails.action"
@@ -25,11 +26,11 @@ const DashboardDetailTabAItem = (item) => {
         <div className="table-card__item table-card__item-1">
           <div className="user-info">
             <div className="user-info__photo">
-              <img
-                className="user-info__photo__img"
-                src={`https://cloud.ingweb.com.br`+queue.pathfile}
-                alt=""
-              />
+                <img
+                    className="user-info__photo__img"
+                    src={queue.pathfile === null ? CLIENTDEFAULT:`https://cloud.ingweb.com.br`+queue.pathfile}
+                    alt=""
+                  />
             </div>
             <span className="socials-icons">
             {(() => {
@@ -119,7 +120,19 @@ const DashboardDetailTabAItem = (item) => {
           }
         </div>
         <div className="table-card__item table-card__item-5">00:00:00</div>
-        <div className="table-card__item table-card__item-6">Fila</div>
+        <div className="table-card__item table-card__item-6">
+          {(() => {
+                var status;
+                if(queue.status === '1'){
+                  status = 'Fila'
+                }else if(queue.status === '2'){
+                  status = 'Retornando'
+                }else{
+                  status = 'Callback'
+                }
+                return status
+          })()}
+        </div>
         <div className="table-card__item table-card__item-7">
         {(() => {
                     var now;
@@ -146,15 +159,24 @@ const DashboardDetailTabAItem = (item) => {
                       duracao = Moment(now).diff(antes, "seconds");
                       checkItem = true;
                     }
-                    return <TimeCounterMinute
-                              horario={duracao < 0 ? 0 : parseInt(duracao)}
-                              key={queue.queueid}
-                            />;
+                    return queue.status === '1' ? <TimeCounterMinute horario={duracao < 0 ? 0 : parseInt(duracao)} key={queue.queueid} /> : '00:00:00';
         })()}
         </div>
-        <div className="table-card__item table-card__item-8">Fila</div>
+        <div className="table-card__item table-card__item-8">
+              {(() => {
+                    var status;
+                    if(queue.status === '1'){
+                      status = 'Fila'
+                    }else if(queue.status === '2'){
+                      status = 'Retornando'
+                    }else{
+                      status = 'Callback'
+                    }
+                    return status
+              })()}
+          </div>
         <div className="table-card__item table-card__item-9">
-          
+          {queue.username}
         </div>
         <div className="table-card__item table-card__item-10">00:00:00</div>
       </span>

@@ -15,7 +15,7 @@ const DashboardDetailTabSaida = () => {
       </div>
 
       <div className="table-card__body">
-        <DashboardDetailTabSaidaItem />
+        {/* <DashboardDetailTabSaidaItem /> */}
       </div>
     </div>
   );

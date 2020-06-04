@@ -1,7 +1,10 @@
 import React from "react";
 import DashboardDetailTabEntradaItem from "./DashboardDetailTabEntradaItem";
+import { useSelector } from "react-redux";
 
 const DashboardDetailTabEntrada = () => {
+  const flows                           = useSelector(state => state.topfiveflowReducer);
+
   return (
     <div className="table-card table-card--flows-in active">
       <div className="table-card__header">
@@ -16,7 +19,9 @@ const DashboardDetailTabEntrada = () => {
       </div>
 
       <div className="table-card__body">
-        <DashboardDetailTabEntradaItem />
+          {flows.map(flow => (
+            <DashboardDetailTabEntradaItem  flow={flow} />
+          ))}
       </div>
     </div>
   );

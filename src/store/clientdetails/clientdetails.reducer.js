@@ -15,6 +15,8 @@ export default function clientdetails(state = [], action) {
         return {...state, messages: action.todos}
       case ClienteDetailsActionTypes.ACCEPT_ANWSER:
         return {...state, answer: action.todos}
+      case ClienteDetailsActionTypes.CHANGE_STATUS_QUEUE:
+        return {...state, status: action.todos}
       case ClienteDetailsActionTypes.ADD_MESSAGES:
         var array = state.messages
         array.push({agente: action.agente,
